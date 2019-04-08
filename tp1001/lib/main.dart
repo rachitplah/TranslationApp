@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 // a package import, as shown below.
 // More details at http://dart-lang.github.io/linter/lints/avoid_relative_lib_imports.html
 import 'package:tp1001/category.dart';
-import 'package:tp1001/unit.dart';
 
 const _categoryName = 'Cake';
 const _categoryIcon = Icons.cake;
@@ -22,35 +21,21 @@ void main() {
 
 /// This widget is the root of our application.
 /// Currently, we just show one widget in our app.
-List<Unit> _retrieveUnitList(String categoryName) {
-    return List.generate(10, (int i) {
-      i += 1;
-      return Unit(
-        name: '$categoryName Unit $i',
-        conversion: i.toDouble(),
-      );
-    });
-  }
 class UnitConverterApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Unit Converter',
-      theme: ThemeData(
-        textTheme: Theme.of(context).textTheme.apply(
-              bodyColor: Colors.black,
-              displayColor: Colors.grey[600],
-            ),
-        // This colors the [InputOutlineBorder] when it is selected
-        primaryColor: Colors.grey[500],
-        textSelectionHandleColor: Colors.green[500],
-      ),
-
-      home: ConverterRoute(
-        color: _categoryColor,
-        name: _categoryName,
-        units: _retrieveUnitList(_categoryName),
+      home: Scaffold(
+        backgroundColor: Colors.green[100],
+        body: Center(
+          child: Category(
+            name: _categoryName,
+            color: _categoryColor,
+            iconLocation: _categoryIcon,
+          ),
+        ),
       ),
     );
   }

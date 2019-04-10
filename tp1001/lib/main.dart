@@ -15,10 +15,7 @@ class tp101App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Abhivadin',
-      home: Scaffold(
-        appBar: AppBar(title: Text("Abhivadin"),),
-        body: mScreen()
-      )
+      home: mScreen(),
     );
   }
 }

@@ -8,7 +8,6 @@ import 'package:tp1001/mainScreen.dart';
 void main()=>runApp(tp101App());
 
 /// This widget is the root of our application.
-/// Currently, we just show one widget in our app.
 class tp101App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

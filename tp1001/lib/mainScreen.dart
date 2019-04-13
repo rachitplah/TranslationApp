@@ -26,6 +26,11 @@ class mScreen extends StatelessWidget
                ),
                Expanded(
                  child: Center(
+                        child: swapButton(),
+                 ),
+               ),
+               Expanded(
+                 child: Center(
                         child: Text(
                                "2nd dDown",
                                 textDirection: TextDirection.ltr,
@@ -42,4 +47,45 @@ class mScreen extends StatelessWidget
       ),
     );
   }
+}
+class swapButtonImage extends StatelessWidget
+{
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    AssetImage assetImage = AssetImage('assests/icons/swap_horiz.png');
+    Image image = Image(image: assetImage);
+    return Container(child: image,);
+  }
+             
+}
+class swapButton extends StatelessWidget
+{
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Container(
+      child: RaisedButton(
+        child: swapButtonImage(),
+        elevation: 6.0,
+        onPressed: (){
+          swapLan(context);
+        }
+      ),
+    );
+  }
+  void swapLan(BuildContext context)
+  {
+    var alertDialog= AlertDialog(
+            title: Text("Languages swapped!!"),
+            content: Text("Successfully!"),
+    );
+    showDialog(
+            context: context,
+            builder: (BuildContext context){
+              return alertDialog;
+            }
+    );
+  }
+  
 }

@@ -68,9 +68,7 @@ class swapButton extends StatelessWidget
       child: RaisedButton(
         child: swapButtonImage(),
         elevation: 6.0,
-        onPressed: (){
-          swapLan(context);
-        }
+        onPressed: ()=>swapLan(context)
       ),
     );
   }
@@ -82,9 +80,7 @@ class swapButton extends StatelessWidget
     );
     showDialog(
             context: context,
-            builder: (BuildContext context){
-              return alertDialog;
-            }
+            builder: (BuildContext context) => alertDialog
     );
   }
   

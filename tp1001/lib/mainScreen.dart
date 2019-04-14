@@ -24,11 +24,12 @@ class mScreen extends StatelessWidget
                         ),
                     )
                ),
-               Expanded(
-                 child: Center(
+              // Expanded(
+                 //child: 
+                 Center(
                         child: swapButton(),
                  ),
-               ),
+               //),
                Expanded(
                  child: Center(
                         child: Text(
@@ -67,7 +68,9 @@ class swapButton extends StatelessWidget
     return Container(
       child: RaisedButton(
         child: swapButtonImage(),
+        color: Colors.blue[400],
         elevation: 6.0,
+        shape: CircleBorder(),
         onPressed: ()=>swapLan(context)
       ),
     );
@@ -75,8 +78,8 @@ class swapButton extends StatelessWidget
   void swapLan(BuildContext context)
   {
     var alertDialog= AlertDialog(
-            title: Text("Languages swapped!!"),
-            content: Text("Successfully!"),
+            //title: Text("Languages swapped!!"),
+            content: Text("Swapped Successfully!"),
     );
     showDialog(
             context: context,

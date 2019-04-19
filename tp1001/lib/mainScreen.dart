@@ -17,12 +17,8 @@ class mScreen extends StatelessWidget
               children: <Widget>[
                Expanded(
                  child: Center(
-                        child: Text(
-                               "1st dDown",
-                                textDirection: TextDirection.ltr,
-                                style: TextStyle(color: Colors.white, fontSize:25.0),
-                        ),
-                    )
+                        child:dropDown(), 
+                    ),
                ),
               // Expanded(
                  //child: 
@@ -32,11 +28,7 @@ class mScreen extends StatelessWidget
                //),
                Expanded(
                  child: Center(
-                        child: Text(
-                               "2nd dDown",
-                                textDirection: TextDirection.ltr,
-                                style: TextStyle(color: Colors.white, fontSize:25.0),
-                        ),
+                        child: dropDown(),
                     ),    
                ),
               ],
@@ -87,4 +79,43 @@ class swapButton extends StatelessWidget
     );
   }
   
+}
+class dropDown extends StatefulWidget
+{
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return _dropDownState();
+  }
+}
+class _dropDownState extends State<dropDown>
+{
+  var _languages=['Arabic','Chinese(Simplified)','Chinese(Traditional)','Czech','Danish','Dutch','English','Finnish','French',
+                   'German','Hebrew','Indonesian','Italian','Japanese','Korean','Polish','Portuguese','Russian','Spanish','Swedish','Turkish'];
+  var _currentItemSelected = 'English';
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Container(
+              child: DropdownButton<String>(
+                     items:_languages.map((String dropDownStringItem) {
+                       return DropdownMenuItem<String>(
+                           value: dropDownStringItem,
+                           child: Text(dropDownStringItem),
+                       );
+                     }).toList(),
+                     onChanged: (String newValueSelected){
+                       _onDropDownItemSelected(newValueSelected);
+                       
+                     },
+                     value: _currentItemSelected,
+            ),
+       );
+  }
+  void _onDropDownItemSelected(String newValueSelected)
+  {
+       setState(() {
+                        this._currentItemSelected=newValueSelected; 
+    });
+  }
 }

@@ -33,6 +33,17 @@ class mScreen extends StatelessWidget
                ),
               ],
             ),
+            TextField(
+              style: TextStyle(color: Colors.white,),
+              onChanged: null,
+              decoration: InputDecoration(
+                labelText: 'Enter text here',
+                labelStyle: TextStyle(color: Colors.white),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.0)
+                )
+              ),
+            ),
               ],
             ),
           ),

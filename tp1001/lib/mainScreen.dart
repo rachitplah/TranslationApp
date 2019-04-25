@@ -21,51 +21,16 @@ class mScreen extends StatelessWidget
               children: <Widget>[
                 Expanded(
                    child:
-                //SingleChildScrollView(
-                 // scrollDirection: Axis.horizontal,
-                  //child:
-                
-              // ListView(
-                 //child: 
-                 /*Container(
-                       decoration: BoxDecoration(
-                         border: Border.all(width: 3),
-                         borderRadius: BorderRadius.all(Radius.circular(50)),
-                         color: Colors.white,
-                       ),
-                       width: 500.0,
-                      // color: Colors.white,
-                       child:
-                     Row(
-                       mainAxisSize: MainAxisSize.min,
-                       children: <Widget>[*/
                   dropDown(), 
                     ),
-                 
-                //),
-            /*           ],),),
-                ),
-                ),
-              Expanded(
-                child: */
-                 //Center(
-                   //     child: 
+              //Expanded(
+               // child: 
                    swapButton(),
-                 //),
-             /*  ),
+                // ),
                Expanded(
-                 //child: Center(
                       child: 
-                 SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child:
-                  Row(
-                       children: <Widget>[*/
-                        dropDown(),
-              /*          ],),
-                ),
-                   // ),    
-               ),*/
+                        dropDown(), 
+               ),
               ],
             ),
               ],
@@ -91,7 +56,6 @@ class swapButton extends StatelessWidget
 {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Container(
       child: RaisedButton(
         child: swapButtonImage(),
@@ -120,7 +84,6 @@ class dropDown extends StatefulWidget
 {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _dropDownState();
   }
 }
@@ -143,18 +106,16 @@ class _dropDownState extends State<dropDown>
                            child:
                            Container(
                              decoration: BoxDecoration(
-                         //border: Border.all(width: 0),
                          borderRadius: BorderRadius.all(Radius.circular(50)),
                          color: Colors.blue[400],
                        ),
+                       
                        width: 112.0,
-                      // height: 20.0,
                              child:
                            Text(
                              dropDownStringItem,
                              style: TextStyle(color: Colors.white,fontSize: 20.0,),
                              textAlign: TextAlign.center,
-                             //textDirection: TextDirection.rtl,
                         ),
                            ),
                        );

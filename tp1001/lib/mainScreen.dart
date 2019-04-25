@@ -47,20 +47,22 @@ class mScreen extends StatelessWidget
             ),
             Row(
                children: <Widget>[
+                 Padding(
+                   padding: EdgeInsets.only(top:30),
+                   child:
                    Container(
                      child: RaisedButton(
-                               child: swapButtonImage(),
+                               child: Icon(Icons.mic,color: Colors.white,),
                               color: Colors.blue[400],
                               padding: EdgeInsets.all(0),
-                              elevation: 6.0,
+                              elevation: 1.0,
                               shape: CircleBorder(),
-                              onPressed: ()=>swapLan(context)
+                              onPressed: ()=>micInp(context)
                            ),
-                     decoration: BoxDecoration(
-                         borderRadius: BorderRadius.circular(5.0),
-                         color: Colors.blue[400],
-                       ),
+                       width: 50.0,
+                       height: 50.0,
                    ),
+                 ),
                ],
             ),
               ],
@@ -70,11 +72,11 @@ class mScreen extends StatelessWidget
       ),
     );
   }
-  void swapLan(BuildContext context)
+  void micInp(BuildContext context)
   {
     var alertDialog= AlertDialog(
             //title: Text("Languages swapped!!"),
-            content: Text("Swapped Successfully!"),
+            content: Text("Listening now!"),
     );
     showDialog(
             context: context,

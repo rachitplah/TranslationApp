@@ -43,13 +43,19 @@ class mScreen extends StatelessWidget
                   borderRadius: BorderRadius.circular(5.0)
                 ),
               ),
-             // height: 5.0,
             ),
             ),
             Row(
                children: <Widget>[
                    Container(
-                     child: Icons.mic,
+                     child: RaisedButton(
+                               child: swapButtonImage(),
+                              color: Colors.blue[400],
+                              padding: EdgeInsets.all(0),
+                              elevation: 6.0,
+                              shape: CircleBorder(),
+                              onPressed: ()=>swapLan(context)
+                           ),
                      decoration: BoxDecoration(
                          borderRadius: BorderRadius.circular(5.0),
                          color: Colors.blue[400],
@@ -64,6 +70,17 @@ class mScreen extends StatelessWidget
       ),
     );
   }
+  void swapLan(BuildContext context)
+  {
+    var alertDialog= AlertDialog(
+            //title: Text("Languages swapped!!"),
+            content: Text("Swapped Successfully!"),
+    );
+    showDialog(
+            context: context,
+            builder: (BuildContext context) => alertDialog
+    );
+  }
 }
 class swapButtonImage extends StatelessWidget
 {
@@ -73,8 +90,7 @@ class swapButtonImage extends StatelessWidget
     AssetImage assetImage = AssetImage('assests/icons/swap_horiz.png');
     Image image = Image(image: assetImage, height: 19.0,width: 19.0,);
     return Container(child: image,);
-  }
-             
+  }        
 }
 class swapButton extends StatelessWidget
 {
@@ -91,6 +107,7 @@ class swapButton extends StatelessWidget
       ),
     );
   }
+
   void swapLan(BuildContext context)
   {
     var alertDialog= AlertDialog(

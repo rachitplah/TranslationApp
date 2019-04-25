@@ -186,3 +186,66 @@ class _dropDownState extends State<dropDown>
     });
   }
 }
+class dropDown3 extends StatefulWidget
+{
+  @override
+  State<StatefulWidget> createState() {
+    return _dropDownState();
+  }
+}
+class _dropDownState3 extends State<dropDown>
+{
+  var _languages=['😃 Grinning Face With Big Eyes','😆 Grinning Squinting Face','😅 Grinning Face With Sweat','🤣 Rolling on the Floor Laughing',
+                  '😂 Face With Tears of Joy','🙂 Slightly Smiling Face','😍 Smiling Face With Heart-Eyes','😘 Face Blowing a Kiss',
+                   '🤩 Star-Struck','😐 Neutral Face','😑 Expressionless Face','😶 Face Without Mouth','🙄 Face With Rolling Eyes',
+                   '😋 Face Savoring Food','😔 Pensive Face','😟 Worried Face','😮 Face With Open Mouth','😨 Fearful Face',
+                   '😢 Crying Face','😠 Angry Face'];
+  var _currentItemSelected = '🙂 Slightly Smiling Face';
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return
+             // Expanded(
+               // child: 
+              DropdownButton<String>(
+                     items:_languages.map((String dropDownStringItem) {
+                       return DropdownMenuItem<String>(
+                           value: dropDownStringItem,
+                           
+                           child:
+                           Padding(
+                             padding: EdgeInsets.only(left: 10.0),
+                             child:
+                           Container(
+                             decoration: BoxDecoration(
+                         borderRadius: BorderRadius.circular(5.0),
+                         color: Colors.blue[400],
+                       ),
+                       
+                       width: 102.0,
+                             child:
+                           Text(
+                             dropDownStringItem,
+                             style: TextStyle(color: Colors.white,fontSize: 20.0,),
+                             textAlign: TextAlign.center,
+                        ),
+                           ),
+                           ),
+                       );
+                     }).toList(),
+                     onChanged: (String newValueSelected){
+                       _onDropDownItemSelected(newValueSelected);
+                       
+                     },
+                     value: _currentItemSelected,
+                     
+            );       
+      // );
+  }
+  void _onDropDownItemSelected(String newValueSelected)
+  {
+       setState(() {
+                        this._currentItemSelected=newValueSelected; 
+    });
+  }
+}

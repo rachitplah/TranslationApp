@@ -35,6 +35,7 @@ class mScreen extends StatelessWidget
               padding: EdgeInsets.only(left:10.0,right:10.0,bottom: 10.0,top:30.0),
               child:
             TextField(
+              style: TextStyle(color: Colors.white),
               onChanged: null,
               decoration: InputDecoration(
                 labelText: 'Enter text here',
@@ -46,6 +47,8 @@ class mScreen extends StatelessWidget
             ),
             ),
             Row(
+              mainAxisSize: MainAxisSize.min,
+              //mainAxisAlignment: MainAxisAlignment.end,
                children: <Widget>[
                  Padding(
                    padding: EdgeInsets.only(top:30),
@@ -55,7 +58,7 @@ class mScreen extends StatelessWidget
                                child: Icon(Icons.mic,color: Colors.white,),
                               color: Colors.blue[400],
                               padding: EdgeInsets.all(0),
-                              elevation: 1.0,
+                              elevation: 10.0,
                               shape: CircleBorder(),
                               onPressed: ()=>micInp(context)
                            ),

@@ -47,11 +47,11 @@ class mScreen extends StatelessWidget
             ),
             ),
             Row(
-              mainAxisSize: MainAxisSize.min,
-              //mainAxisAlignment: MainAxisAlignment.end,
+              //mainAxisSize: MainAxisSize.min,
+             // mainAxisAlignment: MainAxisAlignment.end,
                children: <Widget>[
                  Padding(
-                   padding: EdgeInsets.only(top:30),
+                   padding: EdgeInsets.only(top:30,left:10),
                    child:
                    Container(
                      child: RaisedButton(
@@ -66,12 +66,36 @@ class mScreen extends StatelessWidget
                        height: 50.0,
                    ),
                  ),
-                 Expanded(
-                   child: 
+                // Expanded(
+                  // child: 
                    dropDown3(),
-                 ),
+                 //),
                ],
             ),
+            Container(
+                             margin: EdgeInsets.only(left: 10.0,top: 30.0,right: 10.0),
+                             
+                             decoration: BoxDecoration(
+                         borderRadius: BorderRadius.circular(5.0),
+                         color: Colors.lightBlueAccent,
+                         border: Border.all(
+                                color: Colors.blue[400],
+                                width: 2.0,
+                                style: BorderStyle.solid,
+                         ),
+                         
+                       ),
+                       
+                       width: 266.0,
+                       height: 30.0,
+                             child:
+                             
+                           Text(
+                             "Suggested Translations:",
+                             style: TextStyle(color: Colors.white,fontSize: 19.0,),
+                             textAlign: TextAlign.center,
+                        ),
+                           ),
               ],
             ),
           ),
@@ -194,13 +218,13 @@ class dropDown3 extends StatefulWidget
 {
   @override
   State<StatefulWidget> createState() {
-    return _dropDownState();
+    return _dropDownState3();
   }
 }
-class _dropDownState3 extends State<dropDown>
+class _dropDownState3 extends State<dropDown3>
 {
-  var _languages=['😃 Grinning Face With Big Eyes','😆 Grinning Squinting Face','😅 Grinning Face With Sweat','🤣 Rolling on the Floor Laughing',
-                  '😂 Face With Tears of Joy','🙂 Slightly Smiling Face','😍 Smiling Face With Heart-Eyes','😘 Face Blowing a Kiss',
+  var _languages=['😃 Grinning Face With Big Eyes','😆 Grinning Squinting Face','😅 Grinning Face With Sweat',
+                  '😂 Face With Tears of Joy','🙂 Slightly Smiling Face','😍 Smiling Face & Heart-Eyes','😘 Face Blowing a Kiss',
                    '🤩 Star-Struck','😐 Neutral Face','😑 Expressionless Face','😶 Face Without Mouth','🙄 Face With Rolling Eyes',
                    '😋 Face Savoring Food','😔 Pensive Face','😟 Worried Face','😮 Face With Open Mouth','😨 Fearful Face',
                    '😢 Crying Face','😠 Angry Face'];
@@ -209,32 +233,31 @@ class _dropDownState3 extends State<dropDown>
   Widget build(BuildContext context) {
     // TODO: implement build
     return
-             // Expanded(
-               // child: 
               DropdownButton<String>(
                      items:_languages.map((String dropDownStringItem) {
                        return DropdownMenuItem<String>(
                            value: dropDownStringItem,
-                           
                            child:
-                           Padding(
-                             padding: EdgeInsets.only(left: 10.0),
-                             child:
+                          // Padding(
+                            // padding: EdgeInsets.only(left: 10.0,top: 0.0),
+                             //child:
                            Container(
+                             margin: EdgeInsets.only(left: 10.0,top: 5.0),
                              decoration: BoxDecoration(
                          borderRadius: BorderRadius.circular(5.0),
                          color: Colors.blue[400],
                        ),
                        
-                       width: 102.0,
+                       width: 266.0,
+                       height: 25.0,
                              child:
                            Text(
                              dropDownStringItem,
-                             style: TextStyle(color: Colors.white,fontSize: 20.0,),
+                             style: TextStyle(color: Colors.white,fontSize: 19.0,),
                              textAlign: TextAlign.center,
                         ),
                            ),
-                           ),
+                          // ),
                        );
                      }).toList(),
                      onChanged: (String newValueSelected){

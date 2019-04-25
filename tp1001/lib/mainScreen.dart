@@ -122,8 +122,6 @@ class _dropDownState extends State<dropDown>
                            Padding(
                              padding: EdgeInsets.only(left: 10.0),
                              child:
-                             Expanded(
-                               child:
                            Container(
                              decoration: BoxDecoration(
                          borderRadius: BorderRadius.circular(5.0),
@@ -137,7 +135,6 @@ class _dropDownState extends State<dropDown>
                              style: TextStyle(color: Colors.white,fontSize: 20.0,),
                              textAlign: TextAlign.center,
                         ),
-                           ),
                            ),
                            ),
                        );

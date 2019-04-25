@@ -33,16 +33,20 @@ class mScreen extends StatelessWidget
                ),
               ],
             ),
+            Padding(
+              padding: EdgeInsets.only(left:10.0,right:10.0,bottom: 10.0,top:30.0),
+              child:
             TextField(
-              style: TextStyle(color: Colors.white,),
               onChanged: null,
               decoration: InputDecoration(
                 labelText: 'Enter text here',
                 labelStyle: TextStyle(color: Colors.white),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5.0)
-                )
+                ),
               ),
+             // height: 5.0,
+            ),
             ),
               ],
             ),
@@ -115,19 +119,26 @@ class _dropDownState extends State<dropDown>
                            value: dropDownStringItem,
                            
                            child:
+                           Padding(
+                             padding: EdgeInsets.only(left: 10.0),
+                             child:
+                             Expanded(
+                               child:
                            Container(
                              decoration: BoxDecoration(
-                         borderRadius: BorderRadius.all(Radius.circular(50)),
+                         borderRadius: BorderRadius.circular(5.0),
                          color: Colors.blue[400],
                        ),
                        
-                       width: 112.0,
+                       width: 102.0,
                              child:
                            Text(
                              dropDownStringItem,
                              style: TextStyle(color: Colors.white,fontSize: 20.0,),
                              textAlign: TextAlign.center,
                         ),
+                           ),
+                           ),
                            ),
                        );
                      }).toList(),

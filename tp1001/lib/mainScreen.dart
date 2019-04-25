@@ -13,8 +13,6 @@ class mScreen extends StatelessWidget
           child: Center(
             child: Column(
               children: <Widget>[
-               // SingleChildScrollView(
-                 // child:
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -47,6 +45,17 @@ class mScreen extends StatelessWidget
               ),
              // height: 5.0,
             ),
+            ),
+            Row(
+               children: <Widget>[
+                   Container(
+                     child: Icons.mic,
+                     decoration: BoxDecoration(
+                         borderRadius: BorderRadius.circular(5.0),
+                         color: Colors.blue[400],
+                       ),
+                   ),
+               ],
             ),
               ],
             ),

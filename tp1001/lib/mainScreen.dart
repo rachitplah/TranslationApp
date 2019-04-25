@@ -21,13 +21,13 @@ class mScreen extends StatelessWidget
               children: <Widget>[
                 Expanded(
                    child:
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child:
+                //SingleChildScrollView(
+                 // scrollDirection: Axis.horizontal,
+                  //child:
                 
               // ListView(
                  //child: 
-                 Container(
+                 /*Container(
                        decoration: BoxDecoration(
                          border: Border.all(width: 3),
                          borderRadius: BorderRadius.all(Radius.circular(50)),
@@ -38,21 +38,21 @@ class mScreen extends StatelessWidget
                        child:
                      Row(
                        mainAxisSize: MainAxisSize.min,
-                       children: <Widget>[
+                       children: <Widget>[*/
                   dropDown(), 
-                  //  ),
+                    ),
                  
                 //),
-                       ],),),
+            /*           ],),),
                 ),
                 ),
               Expanded(
-                child: 
+                child: */
                  //Center(
                    //     child: 
                    swapButton(),
                  //),
-               ),
+             /*  ),
                Expanded(
                  //child: Center(
                       child: 
@@ -60,12 +60,12 @@ class mScreen extends StatelessWidget
                   scrollDirection: Axis.horizontal,
                   child:
                   Row(
-                       children: <Widget>[
+                       children: <Widget>[*/
                         dropDown(),
-                        ],),
+              /*          ],),
                 ),
                    // ),    
-               ),
+               ),*/
               ],
             ),
               ],
@@ -141,12 +141,22 @@ class _dropDownState extends State<dropDown>
                            value: dropDownStringItem,
                            
                            child:
+                           Container(
+                             decoration: BoxDecoration(
+                         //border: Border.all(width: 0),
+                         borderRadius: BorderRadius.all(Radius.circular(50)),
+                         color: Colors.blue[400],
+                       ),
+                       width: 112.0,
+                      // height: 20.0,
+                             child:
                            Text(
                              dropDownStringItem,
-                             style: TextStyle(color: Colors.blue,fontSize: 5.0,),
-                             textAlign: TextAlign.justify,
-                             textDirection: TextDirection.rtl,
+                             style: TextStyle(color: Colors.white,fontSize: 20.0,),
+                             textAlign: TextAlign.center,
+                             //textDirection: TextDirection.rtl,
                         ),
+                           ),
                        );
                      }).toList(),
                      onChanged: (String newValueSelected){

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:tp1001/api.dart';
 class mScreen extends StatelessWidget
-{
+{ TextEditingController inputTController=TextEditingController();
+  //var l1,l2;
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -27,7 +29,7 @@ class mScreen extends StatelessWidget
                 // ),
                Expanded(
                       child: 
-                        dropDown(), 
+                        dropDown2(), 
                ),
               ],
             ),
@@ -36,7 +38,12 @@ class mScreen extends StatelessWidget
               child:
             TextField(
               style: TextStyle(color: Colors.white),
-              onChanged: null,
+              onSubmitted: (String userInput){
+                   String l1= _dropDownState().dropReturn;
+                   String l2=_dropDownState2().dropReturn2();
+                   convert(userInput,l1,l2);
+              },
+              controller: inputTController,
               decoration: InputDecoration(
                 labelText: 'Enter text here',
                 labelStyle: TextStyle(color: Colors.white),
@@ -203,6 +210,7 @@ class _dropDownState extends State<dropDown>
                        
                      },
                      value: _currentItemSelected,
+                    // $l1=_currentItemSelected;
                      
             );       
       // );
@@ -212,6 +220,76 @@ class _dropDownState extends State<dropDown>
        setState(() {
                         this._currentItemSelected=newValueSelected; 
     });
+  }
+  String get dropReturn
+  {
+    return
+         _currentItemSelected;
+  }
+}
+class dropDown2 extends StatefulWidget
+{
+  @override
+  State<StatefulWidget> createState() {
+    return _dropDownState();
+  }
+}
+class _dropDownState2 extends State<dropDown2>
+{
+  var _languages=['Arabic','Chinese(Simplified)','Chinese(Traditional)','Czech','Danish','Dutch','English','Finnish','French',
+                   'German','Hebrew','Indonesian','Italian','Japanese','Korean','Polish','Portuguese','Russian','Spanish','Swedish','Turkish'];
+  var _currentItemSelected = 'English';
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return
+             // Expanded(
+               // child: 
+              DropdownButton<String>(
+                     items:_languages.map((String dropDownStringItem) {
+                       return DropdownMenuItem<String>(
+                           value: dropDownStringItem,
+                           
+                           child:
+                           Padding(
+                             padding: EdgeInsets.only(left: 10.0),
+                             child:
+                           Container(
+                             decoration: BoxDecoration(
+                         borderRadius: BorderRadius.circular(5.0),
+                         color: Colors.blue[400],
+                       ),
+                       
+                       width: 102.0,
+                             child:
+                           Text(
+                             dropDownStringItem,
+                             style: TextStyle(color: Colors.white,fontSize: 20.0,),
+                             textAlign: TextAlign.center,
+                        ),
+                           ),
+                           ),
+                       );
+                     }).toList(),
+                     onChanged: (String newValueSelected){
+                       _onDropDownItemSelected(newValueSelected);
+                       
+                     },
+                     value: _currentItemSelected,
+                     
+            );       
+      // );
+  }
+  void _onDropDownItemSelected(String newValueSelected)
+  {
+       setState(() {
+                        this._currentItemSelected=newValueSelected; 
+    });
+  }
+  String dropReturn2()
+  {
+    return
+         _currentItemSelected;
   }
 }
 class dropDown3 extends StatefulWidget

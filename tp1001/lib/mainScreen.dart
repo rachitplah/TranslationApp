@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tp1001/api.dart';
 import 'package:translator/translator.dart';
-String l1,l2;
+var l1,l2;
 String result="";
 class mScreen extends StatelessWidget
 { TextEditingController inputTController=TextEditingController();
@@ -110,9 +110,10 @@ class mScreen extends StatelessWidget
                         ),
                            ),
                     Container(
+                      height: 30.0,
                         child: 
                         Text(
-                          result
+                          result,
                         ),
                     ),
               ],
@@ -139,7 +140,7 @@ class mScreen extends StatelessWidget
                    //{
                     // print(s);
                    //});
-                   var translation = await translator.translate(input, from: 'en', to: 'ru');
+                   var translation = await translator.translate(input, from: l1, to: l2);
                    print(translation);
                    result=translation;
                   }
@@ -192,7 +193,7 @@ class dropDown extends StatefulWidget
 }
 class _dropDownState extends State<dropDown>
 {
-  var _languages=['Arabic','Bengali','Chinese Simplified','Chinese Traditional','Czech','English','Finnish','French','Gujarati'
+  var _languages=['Arabic','Bengali','Chinese Simplified','Chinese Traditional','Czech','English','Finnish','French','Gujarati',
                    'German','Hindi','Indonesian','Italian','Japanese','Korean','Portuguese','Russian','Spanish','Turkish','Urdu'];
   var _currentItemSelected = 'English';
   
@@ -252,7 +253,7 @@ class _dropDownState extends State<dropDown>
   }
   void _setFun(var val)
   {
-  var lanG=['Arabic','Bengali','Chinese Simplified','Chinese Traditional','Czech','English','Finnish','French','Gujarati'
+  var lanG=['Arabic','Bengali','Chinese Simplified','Chinese Traditional','Czech','English','Finnish','French','Gujarati',
                    'German','Hindi','Indonesian','Italian','Japanese','Korean','Portuguese','Russian','Spanish','Turkish','Urdu'];
   var lanC=['ar','bn','zh-CN','zh-TW','cs','en','fi','fr','gu','de','hi','id','it','ja','ko','pt','ru','es','tr','ur'];
   for(int i=0;i<lanG.length;i++)
@@ -274,7 +275,7 @@ class dropDown2 extends StatefulWidget
 }
 class _dropDownState2 extends State<dropDown2>
 {
-  var _languages=['Arabic','Bengali','Chinese Simplified','Chinese Traditional','Czech','English','Finnish','French','Gujarati'
+  var _languages=['Arabic','Bengali','Chinese Simplified','Chinese Traditional','Czech','English','Finnish','French','Gujarati',
                    'German','Hindi','Indonesian','Italian','Japanese','Korean','Portuguese','Russian','Spanish','Turkish','Urdu'];
   var _currentItemSelected = 'English';
   @override
@@ -332,14 +333,14 @@ class _dropDownState2 extends State<dropDown2>
   }
   void _setFun(var val)
   {
-  var lanG=['Arabic','Bengali','Chinese Simplified','Chinese Traditional','Czech','English','Finnish','French','Gujarati'
+  var lanG=['Arabic','Bengali','Chinese Simplified','Chinese Traditional','Czech','English','Finnish','French','Gujarati',
                    'German','Hindi','Indonesian','Italian','Japanese','Korean','Portuguese','Russian','Spanish','Turkish','Urdu'];
   var lanC=['ar','bn','zh-CN','zh-TW','cs','en','fi','fr','gu','de','hi','id','it','ja','ko','pt','ru','es','tr','ur'];
   for(int i=0;i<lanG.length;i++)
   {
       if(val==lanG[i])
       {
-        l1=lanC[i];
+        l2=lanC[i];
         break;
       }
   }

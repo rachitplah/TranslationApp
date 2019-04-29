@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tp1001/api.dart';
+import 'package:translator/translator.dart';
+String l1,l2;
 class mScreen extends StatelessWidget
 { TextEditingController inputTController=TextEditingController();
   //var l1,l2;
@@ -39,9 +41,12 @@ class mScreen extends StatelessWidget
             TextField(
               style: TextStyle(color: Colors.white),
               onSubmitted: (String userInput){
-                   String l1= _dropDownState().dropReturn;
-                   String l2=_dropDownState2().dropReturn2();
-                   convert(userInput,l1,l2);
+                  // String l1= _dropDownState().dropReturn;
+                   //String l2=_dropDownState2().dropReturn2;
+                   print(userInput);
+                   print(l1);
+                     print(l2);
+                   convert1(userInput,l1,l2);
               },
               controller: inputTController,
               decoration: InputDecoration(
@@ -121,6 +126,15 @@ class mScreen extends StatelessWidget
             builder: (BuildContext context) => alertDialog
     );
   }
+  void convert1(String input,String l1, String l2) async{
+                   GoogleTranslator translator =GoogleTranslator();
+                   //translator.translate(input, from: 'en', to: 'ru').then((s)
+                   //{
+                    // print(s);
+                   //});
+                   var translation = await translator.translate(input, from: 'en', to: 'ru');
+                   print(translation);
+                  }
 }
 class swapButtonImage extends StatelessWidget
 {
@@ -173,6 +187,7 @@ class _dropDownState extends State<dropDown>
   var _languages=['Arabic','Chinese(Simplified)','Chinese(Traditional)','Czech','Danish','Dutch','English','Finnish','French',
                    'German','Hebrew','Indonesian','Italian','Japanese','Korean','Polish','Portuguese','Russian','Spanish','Swedish','Turkish'];
   var _currentItemSelected = 'English';
+  
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -181,6 +196,7 @@ class _dropDownState extends State<dropDown>
                // child: 
               DropdownButton<String>(
                      items:_languages.map((String dropDownStringItem) {
+                       _setFun(_currentItemSelected);
                        return DropdownMenuItem<String>(
                            value: dropDownStringItem,
                            
@@ -207,11 +223,11 @@ class _dropDownState extends State<dropDown>
                      }).toList(),
                      onChanged: (String newValueSelected){
                        _onDropDownItemSelected(newValueSelected);
-                       
+                       _setFun(_currentItemSelected);
+                      // mScreen.l1=_currentItemSelected;
                      },
                      value: _currentItemSelected,
-                    // $l1=_currentItemSelected;
-                     
+                     //mScreen.l1=_currentItemSelected;
             );       
       // );
   }
@@ -226,12 +242,16 @@ class _dropDownState extends State<dropDown>
     return
          _currentItemSelected;
   }
+  void _setFun(var val)
+  {
+   l1=val;
+  }
 }
 class dropDown2 extends StatefulWidget
 {
   @override
   State<StatefulWidget> createState() {
-    return _dropDownState();
+    return _dropDownState2();
   }
 }
 class _dropDownState2 extends State<dropDown2>
@@ -247,6 +267,7 @@ class _dropDownState2 extends State<dropDown2>
                // child: 
               DropdownButton<String>(
                      items:_languages.map((String dropDownStringItem) {
+                       _setFun(_currentItemSelected);
                        return DropdownMenuItem<String>(
                            value: dropDownStringItem,
                            
@@ -273,7 +294,7 @@ class _dropDownState2 extends State<dropDown2>
                      }).toList(),
                      onChanged: (String newValueSelected){
                        _onDropDownItemSelected(newValueSelected);
-                       
+                       _setFun(_currentItemSelected);
                      },
                      value: _currentItemSelected,
                      
@@ -286,10 +307,14 @@ class _dropDownState2 extends State<dropDown2>
                         this._currentItemSelected=newValueSelected; 
     });
   }
-  String dropReturn2()
+  String get dropReturn2
   {
     return
          _currentItemSelected;
+  }
+  void _setFun(var val)
+  {
+   l2=val;
   }
 }
 class dropDown3 extends StatefulWidget

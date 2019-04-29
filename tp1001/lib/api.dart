@@ -31,7 +31,7 @@ class Api {
   /// The API endpoint we want to hit.
   ///
   /// This API doesn't have a key but often, APIs do require authentication
-  final String _url = 'https://translation.googleapis.com/language/translate/v2';
+  final String _url = 'flutter.udacity.com';
 
   /// Gets all the units and conversion rates for a given category.
   ///
@@ -54,8 +54,9 @@ class Api {
   /// Returns a double, which is the converted amount. Returns null on error.
   Future<String> convert(
      String userInput,String l1,String l2) async {
-    final uri = Uri.https(_url,
-        {'amount': amount, 'from': fromUnit, 'to': toUnit});
+    final uri = Uri.https(_url, '/convert',
+       // {'amount': amount, 'from': fromUnit, 'to': toUnit}
+        );
     final jsonResponse = await _getJson(uri);
     if (jsonResponse == null || jsonResponse['status'] == null) {
       print('Error retrieving conversion.');

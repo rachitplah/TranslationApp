@@ -16,7 +16,7 @@ class mScreen extends StatelessWidget
           padding: EdgeInsets.only(top:30.0),
           color: Colors.lightBlueAccent,
           child: Center(
-            child: Column(
+            child: ListView(
               children: <Widget>[
                 Row(
                   mainAxisSize: MainAxisSize.min,

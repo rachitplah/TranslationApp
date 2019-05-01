@@ -246,11 +246,6 @@ class _dropDownState extends State<dropDown>
                         this._currentItemSelected=newValueSelected; 
     });
   }
-  String get dropReturn
-  {
-    return
-         _currentItemSelected;
-  }
   void _setFun(var val)
   {
   var lanG=['Arabic','Bengali','Chinese Simplified','Chinese Traditional','Czech','English','Finnish','French','Gujarati',
@@ -325,11 +320,6 @@ class _dropDownState2 extends State<dropDown2>
        setState(() {
                         this._currentItemSelected=newValueSelected; 
     });
-  }
-  String get dropReturn2
-  {
-    return
-         _currentItemSelected;
   }
   void _setFun(var val)
   {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tp1001/api.dart';
 import 'package:translator/translator.dart';
 var l1,l2;
-String result="";
+Future<String> results;
 class mScreen extends StatelessWidget
 { TextEditingController inputTController=TextEditingController();
   //var l1,l2;
@@ -41,13 +41,11 @@ class mScreen extends StatelessWidget
               child:
             TextField(
               style: TextStyle(color: Colors.white),
-              onSubmitted: (String userInput){
-                  // String l1= _dropDownState().dropReturn;
-                   //String l2=_dropDownState2().dropReturn2;
+              onSubmitted: (String userInput) async {
                    print(userInput);
                    print(l1);
                      print(l2);
-                   convert1(userInput,l1,l2);
+                   results=(await convert1(userInput,l1,l2)) as Future<String>;  
               },
               controller: inputTController,
               decoration: InputDecoration(
@@ -111,10 +109,10 @@ class mScreen extends StatelessWidget
                            ),
                     Container(
                       height: 30.0,
-                        child: 
-                        Text(
-                          result,
-                        ),
+                       // child: 
+                        //Text(
+                         // result,
+                        //),
                     ),
               ],
             ),
@@ -134,7 +132,7 @@ class mScreen extends StatelessWidget
             builder: (BuildContext context) => alertDialog
     );
   }
-  void convert1(String input,String l1, String l2) async{
+  Future<String> convert1(String input,String l1, String l2) async{
                    GoogleTranslator translator =GoogleTranslator();
                    //translator.translate(input, from: 'en', to: 'ru').then((s)
                    //{
@@ -142,7 +140,9 @@ class mScreen extends StatelessWidget
                    //});
                    var translation = await translator.translate(input, from: l1, to: l2);
                    print(translation);
-                   result=translation;
+                   return
+                     translation;
+                   //results=translation as Future<String>;
                   }
 }
 class swapButtonImage extends StatelessWidget
@@ -396,5 +396,40 @@ class _dropDownState3 extends State<dropDown3>
        setState(() {
                         this._currentItemSelected=newValueSelected; 
     });
+  }
+}
+class resultList extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+    return resultListState;
+  }
+}
+class resultListState extends State<resultList>{
+  int count=0;
+  @override
+  Widget build(BuildContext context) {
+    return ListView getListView(){
+      return
+       ListView.builder(
+          itemCount: count,
+          itemBuilder: (BuildContext context,int position){
+            return Card(
+                color: Colors.white,
+                elevation: 8.0,
+                child: ListTile(
+                  leading: Icon(Icons.chevron_right),
+                  title: Text(result),
+                  trailing: GestureDetector(
+                      child:Icon(Icons.arrow_upward),
+                      onTap:(){}
+                  ),
+                  onTap: (){
+                    debugPrint("List Tapped");
+                  }
+                ),
+            );
+          },
+      );
+    };
   }
 }

@@ -173,14 +173,16 @@ class swapButton extends StatelessWidget
 
   void swapLan(BuildContext context)
   {
-    var alertDialog= AlertDialog(
-            //title: Text("Languages swapped!!"),
-            content: Text("Swapped Successfully!"),
+    var snackBar=SnackBar(
+        content: Text("SWAPPED SUCCESSFULLY"),
+        action: SnackBarAction(
+          label: "UNDO",
+          onPressed: (){
+            debugPrint("Dummy undo");
+          },
+        ),
     );
-    showDialog(
-            context: context,
-            builder: (BuildContext context) => alertDialog
-    );
+    Scaffold.of(context).showSnackBar(snackBar);
   }
   
 }
@@ -398,6 +400,7 @@ class _dropDownState3 extends State<dropDown3>
     });
   }
 }
+/*
 class resultList extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
@@ -433,3 +436,4 @@ class resultListState extends State<resultList>{
     };
   }
 }
+*/

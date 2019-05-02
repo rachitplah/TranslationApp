@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tp1001/api.dart';
 import 'package:translator/translator.dart';
+import 'dart:async';
 var l1,l2;
 Future<String> results;
 class mScreen extends StatelessWidget

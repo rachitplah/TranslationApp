@@ -110,10 +110,20 @@ class mScreen extends StatelessWidget
                            ),
                     Container(
                       height: 30.0,
-                       // child: 
-                        //Text(
-                         // result,
-                        //),
+                        child: 
+                           ListView(
+                             children: <Widget>[
+                               
+                                ListTile(
+                                leading: Icon(Icons.chevron_right),
+                                title: Text(results as String),
+                                trailing: GestureDetector(
+                                     child:Icon(Icons.arrow_upward),
+                                onTap:(){}
+                                 ),
+                                ),
+                               ],
+                           ),
                     ),
               ],
             ),

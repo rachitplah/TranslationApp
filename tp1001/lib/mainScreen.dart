@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tp1001/api.dart';
 import 'package:translator/translator.dart';
-import 'dart:async';
+//import 'dart:async';
 var l1,l2;
-Future<String> results;
+String results="";
+var resu;
 class mScreen extends StatelessWidget
 { TextEditingController inputTController=TextEditingController();
   //var l1,l2;
@@ -42,11 +43,14 @@ class mScreen extends StatelessWidget
               child:
             TextField(
               style: TextStyle(color: Colors.white),
-              onSubmitted: (String userInput) async {
+              onSubmitted: (String userInput) async{
                    print(userInput);
                    print(l1);
                      print(l2);
-                   results=(await convert1(userInput,l1,l2)) as Future<String>;  
+                   String res=await (convert1(userInput,l1,l2) as String);
+                   print('This is $res');
+                  // resultListState().changeResult(res);
+                   
               },
               controller: inputTController,
               decoration: InputDecoration(
@@ -108,23 +112,8 @@ class mScreen extends StatelessWidget
                              textAlign: TextAlign.center,
                         ),
                            ),
-                    Container(
-                      height: 30.0,
-                        child: 
-                           ListView(
-                             children: <Widget>[
-                               
-                                ListTile(
-                                leading: Icon(Icons.chevron_right),
-                                title: Text(results as String),
-                                trailing: GestureDetector(
-                                     child:Icon(Icons.arrow_upward),
-                                onTap:(){}
-                                 ),
-                                ),
-                               ],
-                           ),
-                    ),
+                    resu=resultList(firstWidget: Text("Hello")),
+                   // returnList(),
               ],
             ),
           ),
@@ -151,9 +140,11 @@ class mScreen extends StatelessWidget
                    //});
                    var translation = await translator.translate(input, from: l1, to: l2);
                    print(translation);
-                   return
-                     translation;
-                   //results=translation as Future<String>;
+                  // results=translation as String;
+                  resu=resultList(firstWidget: Text(translation));
+                  // resu.changeResult1(translation);
+                  return 
+                  translation;
                   }
 }
 class swapButtonImage extends StatelessWidget
@@ -185,7 +176,7 @@ class swapButton extends StatelessWidget
   void swapLan(BuildContext context)
   {
     var snackBar=SnackBar(
-        content: Text("SWAPPED SUCCESSFULLY"),
+        content: Text("Swapped Successfuly"),
         action: SnackBarAction(
           label: "UNDO",
           onPressed: (){
@@ -415,7 +406,7 @@ class _dropDownState3 extends State<dropDown3>
 class resultList extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
-    return resultListState;
+    return resultListState();
   }
 }
 class resultListState extends State<resultList>{
@@ -448,3 +439,46 @@ class resultListState extends State<resultList>{
   }
 }
 */
+class resultList extends StatefulWidget{
+  resultList({this.firstWidget});
+  final Widget firstWidget;
+  @override
+  State<StatefulWidget> createState() {
+    return resultListState();
+  }
+ // void changeResult1(State<resultList>,String result)
+ // {
+ //     resultListState().changeResult(context,result);
+ // }
+}
+class resultListState extends State<resultList>{
+  String res="See results here";
+  @override
+  Widget build(BuildContext context) {
+    return Container (
+                      height: 100.0,
+                        child: 
+                           ListView(
+                             children: <Widget>[
+                                ListTile(                               
+                                leading: Icon(Icons.chevron_right),
+                                title: widget.firstWidget,
+                                //Text(res),
+                                trailing: GestureDetector(
+                                     child:Icon(Icons.arrow_upward),
+                                onTap:(){}
+                                 ),
+                                ),
+                               ],
+                           ),
+                    );
+  }
+  //String 
+  void changeResult(String result)
+  {
+       setState(() {
+                        this.res=results; 
+    });
+    //return res;
+  }
+}

@@ -11,6 +11,8 @@ var resu;
 class mScreen extends StatelessWidget
 { TextEditingController inputTController=TextEditingController();
   //var l1,l2;
+  final DataModel data;
+  DatabaseHelper helper=DatabaseHelper();
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -154,19 +156,25 @@ class mScreen extends StatelessWidget
   void _save() async{
     int result;
     if(data.id!=null){
-      result=await helper.updateNote(data);
+      result=await helper.updateData(data);
     } else{
-      result=await helper.insertNote(data);
+      result=await helper.insertData(data);
     }
     if(result!=0){
-      _showSaveSnackBar(context,'Translation saved successfully');
+      _saveAlertDialog('Translation saved successfully');
     } else{
-      _showSaveSnackBar(context,'Translation not saved');
+      _saveAlertDialog('Translation not saved');
     }
   }
-  void _showSaveSnackBar(BuildContext context, String  message){
-    final snackBar = SnackBar(content: Text(message),);
-    Scaffold.of(context).showSnackBar(snackBar);
+  void _saveAlertDialog(String message)
+  {
+      AlertDialog alertDialog=AlertDialog(
+        title: Text(message),
+      );
+      showDialog(
+            context: context,
+            builder: (_) => alertDialog
+      );
   }
 }
 class swapButtonImage extends StatelessWidget

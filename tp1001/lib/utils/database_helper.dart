@@ -75,4 +75,15 @@ class DatabaseHelper{
       int result = Sqflite.firstIntValue(x);
       return result;
     } 
+    //Convert Map list to Note list
+    Future<List<DataModel>> getDataList() async {
+      var dataMapList = await getDataMapList();
+      int count=dataMapList.length;
+      List<DataModel> dataList = List<DataModel>();
+      for(int i=0; i<count;i++)
+      {
+        dataList.add(DataModel.fromMapObject(dataMapList[i]));
+      }
+      return dataList;
+    }
 } 

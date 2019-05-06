@@ -119,7 +119,7 @@ class mScreen extends StatelessWidget
                         ),
                            ),
                     //resu=resultList(firstWidget: Text("Hello")),
-                    resultList(),
+                    resu=resultList(),
               ],
             ),
           ),
@@ -166,6 +166,7 @@ class mScreen extends StatelessWidget
     } else{
       _showSnackBar(context,'Translation not saved');
     }
+    resu.updateListView();
   }
   void _showSnackBar(BuildContext context, String  message){
     final snackBar = SnackBar(content: Text(message),);

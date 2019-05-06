@@ -1,7 +1,10 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:tp1001/models/dataModel.dart';
+import 'package:tp1001/utils/database_helper.dart';
 import 'package:tp1001/api.dart';
 import 'package:translator/translator.dart';
-//import 'dart:async';
+import 'package:sqflite/sqflite.dart';
 var l1,l2;
 String results="";
 var resu;
@@ -47,8 +50,9 @@ class mScreen extends StatelessWidget
                    print(userInput);
                    print(l1);
                      print(l2);
-                   String res=await (convert1(userInput,l1,l2) as String);
-                   print('This is $res');
+                  results=await (convert1(userInput,l1,l2) as String);
+                   print('This is $results');
+
                   // resultListState().changeResult(res);
                    
               },
@@ -112,8 +116,8 @@ class mScreen extends StatelessWidget
                              textAlign: TextAlign.center,
                         ),
                            ),
-                    resu=resultList(firstWidget: Text("Hello")),
-                   // returnList(),
+                    //resu=resultList(firstWidget: Text("Hello")),
+                    resultList(),
               ],
             ),
           ),
@@ -141,11 +145,29 @@ class mScreen extends StatelessWidget
                    var translation = await translator.translate(input, from: l1, to: l2);
                    print(translation);
                   // results=translation as String;
-                  resu=resultList(firstWidget: Text(translation));
+                  //resu=resultList(firstWidget: Text(translation));
                   // resu.changeResult1(translation);
+                  _save();
                   return 
                   translation;
                   }
+  void _save() async{
+    int result;
+    if(data.id!=null){
+      result=await helper.updateNote(data);
+    } else{
+      result=await helper.insertNote(data);
+    }
+    if(result!=0){
+      _showSaveSnackBar(context,'Translation saved successfully');
+    } else{
+      _showSaveSnackBar(context,'Translation not saved');
+    }
+  }
+  void _showSaveSnackBar(BuildContext context, String  message){
+    final snackBar = SnackBar(content: Text(message),);
+    Scaffold.of(context).showSnackBar(snackBar);
+  }
 }
 class swapButtonImage extends StatelessWidget
 {
@@ -402,7 +424,7 @@ class _dropDownState3 extends State<dropDown3>
     });
   }
 }
-/*
+
 class resultList extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
@@ -410,9 +432,15 @@ class resultList extends StatefulWidget{
   }
 }
 class resultListState extends State<resultList>{
+  DatabaseHelper databaseHelper = DatabaseHelper();
+  List<DataModel> dataList;
   int count=0;
   @override
   Widget build(BuildContext context) {
+    if (dataList==null){
+      dataList=List<DataModel>();
+      updateListView();
+    }
     return ListView getListView(){
       return
        ListView.builder(
@@ -423,7 +451,7 @@ class resultListState extends State<resultList>{
                 elevation: 8.0,
                 child: ListTile(
                   leading: Icon(Icons.chevron_right),
-                  title: Text(result),
+                  title: Text(results),
                   trailing: GestureDetector(
                       child:Icon(Icons.arrow_upward),
                       onTap:(){}
@@ -437,8 +465,33 @@ class resultListState extends State<resultList>{
       );
     };
   }
+  void _delete(BuildContext context,DataModel data) async{
+    int result=await databaseHelper.deleteData(data.id);
+    if(result!=0){
+    _showSnackBar(context,'Note Deleted Successfully');
+    // TODO update list view.
+    updateListView();
+    }
+  }
+  void _showSnackBar(BuildContext context, String  message){
+    final snackBar = SnackBar(content: Text(message),);
+    Scaffold.of(context).showSnackBar(snackBar);
+  }
+  void updateListView(){
+    final Future<Database> dbFuture= databaseHelper.initializeDatabase();
+    dbFuture.then((database){
+        Future<List<DataModel>> dataListFuture = databaseHelper.getDataList();
+        dataListFuture.then((dataList){
+            setState(() {
+              this.dataList=dataList;
+              this.count=dataList.length;
+            });
+        });
+    });
+  }
 }
-*/
+
+/*
 class resultList extends StatefulWidget{
   resultList({this.firstWidget});
   final Widget firstWidget;
@@ -482,3 +535,4 @@ class resultListState extends State<resultList>{
     //return res;
   }
 }
+*/

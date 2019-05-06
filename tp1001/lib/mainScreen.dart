@@ -52,7 +52,7 @@ class mScreen extends StatelessWidget
                    print(userInput);
                    print(l1);
                      print(l2);
-                  results=await (convert1(userInput,l1,l2) as String);
+                  results=await (convert1(userInput,l1,l2,context) as String);
                    print('This is $results');
 
                   // resultListState().changeResult(res);
@@ -138,7 +138,7 @@ class mScreen extends StatelessWidget
             builder: (BuildContext context) => alertDialog
     );
   }
-  Future<String> convert1(String input,String l1, String l2) async{
+  Future<String> convert1(String input,String l1, String l2,BuildContext context) async{
                    GoogleTranslator translator =GoogleTranslator();
                    //translator.translate(input, from: 'en', to: 'ru').then((s)
                    //{
@@ -149,11 +149,11 @@ class mScreen extends StatelessWidget
                   // results=translation as String;
                   //resu=resultList(firstWidget: Text(translation));
                   // resu.changeResult1(translation);
-                  _save();
+                  _save(context);
                   return 
                   translation;
                   }
-  void _save() async{
+  void _save(BuildContext context) async{
     int result;
     if(data.id!=null){
       result=await helper.updateData(data);
@@ -161,20 +161,14 @@ class mScreen extends StatelessWidget
       result=await helper.insertData(data);
     }
     if(result!=0){
-      _saveAlertDialog('Translation saved successfully');
+      _showSnackBar(context,'Translation saved successfully');
     } else{
-      _saveAlertDialog('Translation not saved');
+      _showSnackBar(context,'Translation not saved');
     }
   }
-  void _saveAlertDialog(String message)
-  {
-      AlertDialog alertDialog=AlertDialog(
-        title: Text(message),
-      );
-      showDialog(
-            context: context,
-            builder: (_) => alertDialog
-      );
+  void _showSnackBar(BuildContext context, String  message){
+    final snackBar = SnackBar(content: Text(message),);
+    Scaffold.of(context).showSnackBar(snackBar);
   }
 }
 class swapButtonImage extends StatelessWidget
@@ -449,7 +443,9 @@ class resultListState extends State<resultList>{
       dataList=List<DataModel>();
       updateListView();
     }
-    return ListView getListView(){
+    return getListView();
+  }
+    ListView getListView(){
       return
        ListView.builder(
           itemCount: count,
@@ -471,7 +467,6 @@ class resultListState extends State<resultList>{
             );
           },
       );
-    };
   }
   void _delete(BuildContext context,DataModel data) async{
     int result=await databaseHelper.deleteData(data.id);

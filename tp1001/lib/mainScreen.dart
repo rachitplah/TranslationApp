@@ -11,7 +11,7 @@ var resu;
 class mScreen extends StatelessWidget
 { TextEditingController inputTController=TextEditingController();
   //var l1,l2;
-  final DataModel data;
+  DataModel data;
   DatabaseHelper helper=DatabaseHelper();
   @override
   Widget build(BuildContext context) {
@@ -155,6 +155,7 @@ class mScreen extends StatelessWidget
                   }
   void _save(BuildContext context) async{
     int result;
+    //Navigator.pop(false);
     if(data.id!=null){
       result=await helper.updateData(data);
     } else{
@@ -455,7 +456,7 @@ class resultListState extends State<resultList>{
                 elevation: 8.0,
                 child: ListTile(
                   leading: Icon(Icons.chevron_right),
-                  title: Text(results),
+                  title: Text(this.dataList[position].output),
                   trailing: GestureDetector(
                       child:Icon(Icons.arrow_upward),
                       onTap:(){}

@@ -2,7 +2,7 @@ import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
-import 'package:tp1001/models/dataModel.dart';
+import 'package:tp1001/models/data.dart';
 
 class DatabaseHelper{
     static DatabaseHelper _databaseHelper;   //Singleton DatabaseHelper
@@ -40,7 +40,7 @@ class DatabaseHelper{
     }
     void _createDb(Database db,int newVersion) async{
       await db.execute('CREATE TABLE $dTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colInput TEXT,'
-                       '$colICode TEXT, $colOutput TEXT, $colOCode TEXT, $colEmotion TEXT, $colUserId TEXT, $colRating INTEGER');
+                       '$colICode TEXT, $colOutput TEXT, $colOCode TEXT, $colEmotion TEXT, $colUserId TEXT, $colRating INTEGER)');
     }
     
     //Fetch Operations:

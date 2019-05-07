@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:tp1001/models/dataModel.dart';
+import 'package:tp1001/models/data.dart';
 import 'package:tp1001/utils/database_helper.dart';
 import 'package:tp1001/api.dart';
 import 'package:translator/translator.dart';
@@ -52,7 +52,7 @@ class mScreen extends StatelessWidget
                    print(userInput);
                    print(l1);
                      print(l2);
-                  results=await (convert1(userInput,l1,l2,context) as String);
+                  results=await (convert1(userInput,l1,l2,context,data) as String);
                    print('This is $results');
 
                   // resultListState().changeResult(res);
@@ -119,7 +119,12 @@ class mScreen extends StatelessWidget
                         ),
                            ),
                     //resu=resultList(firstWidget: Text("Hello")),
+                    Container(
+                      child:
                     resu=resultList(),
+                    height: 100.0,
+                    width: 100.0,
+                    ),
               ],
             ),
           ),
@@ -138,7 +143,7 @@ class mScreen extends StatelessWidget
             builder: (BuildContext context) => alertDialog
     );
   }
-  Future<String> convert1(String input,String l1, String l2,BuildContext context) async{
+  Future<String> convert1(String input,String l1, String l2,BuildContext context,DataModel data) async{
                    GoogleTranslator translator =GoogleTranslator();
                    //translator.translate(input, from: 'en', to: 'ru').then((s)
                    //{
@@ -149,18 +154,18 @@ class mScreen extends StatelessWidget
                   // results=translation as String;
                   //resu=resultList(firstWidget: Text(translation));
                   // resu.changeResult1(translation);
-                  _save(context);
+                  _save(context,data);
                   return 
                   translation;
                   }
-  void _save(BuildContext context) async{
+  void _save(BuildContext context,DataModel data) async{
     int result;
     //Navigator.pop(false);
-    if(data.id!=null){
-      result=await helper.updateData(data);
-    } else{
+    //if(data.id!=null){
+    //  result=await helper.updateData(data);
+   // } else{
       result=await helper.insertData(data);
-    }
+    //}
     if(result!=0){
       _showSnackBar(context,'Translation saved successfully');
     } else{

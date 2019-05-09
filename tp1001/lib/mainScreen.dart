@@ -185,10 +185,6 @@ class mScreen extends StatelessWidget
       print('Translation not saved succesfully');
     }
   }
-  //void _showSnackBar(BuildContext context, String  message){
-    //final snackBar = SnackBar(content: Text(message),);
-    //Scaffold.of(context).showSnackBar(snackBar);
- // }
 }
 class swapButtonImage extends StatelessWidget
 {
@@ -280,10 +276,8 @@ class _dropDownState extends State<dropDown>
                      onChanged: (String newValueSelected){
                        _onDropDownItemSelected(newValueSelected);
                        _setFun(_currentItemSelected);
-                      // mScreen.l1=_currentItemSelected;
                      },
                      value: _currentItemSelected,
-                     //mScreen.l1=_currentItemSelected;
             );       
       // );
   }

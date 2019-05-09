@@ -162,7 +162,7 @@ class mScreen extends StatelessWidget
                   }
   void _save(BuildContext context,DataModel data) async{
     int result;
-    resu.updateListView();
+    resu.updateListView(1);
     //Navigator.pop(false);
     if(data.id!=null){
       result=await helper.updateData(data);
@@ -446,10 +446,10 @@ class resultList extends StatefulWidget{
   State<StatefulWidget> createState() {
     return rr=resultListState();
   }
-  void updateListView()
+  void updateListView(int op)
   {
     if(rr!=null)
-    rr.updateListView();
+    rr.updateListView(op);
   }
 }
 class resultListState extends State<resultList>{
@@ -460,7 +460,7 @@ class resultListState extends State<resultList>{
   Widget build(BuildContext context) {
     if (dataList==null){
       dataList=List<DataModel>();
-      updateListView();
+      updateListView(1);
     }
     return getListView();
   }
@@ -492,17 +492,17 @@ class resultListState extends State<resultList>{
     if(result!=0){
     _showSnackBar(context,'Note Deleted Successfully');
     // TODO update list view.
-    updateListView();
+    updateListView(1);
     }
   }
   void _showSnackBar(BuildContext context, String  message){
     final snackBar = SnackBar(content: Text(message),);
     Scaffold.of(context).showSnackBar(snackBar);
   }
-  void updateListView(){
+  void updateListView(int op){
     final Future<Database> dbFuture= databaseHelper.initializeDatabase();
     dbFuture.then((database){
-        Future<List<DataModel>> dataListFuture = databaseHelper.getDataList();
+        Future<List<DataModel>> dataListFuture = databaseHelper.getDataList(op);
         dataListFuture.then((dataList){
             setState(() {
               this.dataList=dataList;

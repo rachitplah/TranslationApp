@@ -44,10 +44,15 @@ class DatabaseHelper{
     }
     
     //Fetch Operations:
-    Future<List<Map<String,dynamic>>> getDataMapList() async{
+    Future<List<Map<String,dynamic>>> getDataMapList(int op) async{
       Database db=await this.database;
       //var result= await db.rawQuery('SELECT * FROM $dTable order by $colRating DESC');
+      if (op==1){
+      var result= await db.rawQuery('SELECT * FROM $dTable WHERE $colInput=data.input AND $colICode=data.iCode AND $colOCode=data.oCode');
+      }
+      else{
       var result= await db.query(dTable, orderBy:'$colRating DESC'); //It same using helper functions
+      }
       return result;
     }
     //Insert Operations:
@@ -76,8 +81,8 @@ class DatabaseHelper{
       return result;
     } 
     //Convert Map list to Note list
-    Future<List<DataModel>> getDataList() async {
-      var dataMapList = await getDataMapList();
+    Future<List<DataModel>> getDataList(int op) async {
+      var dataMapList = await getDataMapList(op);
       int count=dataMapList.length;
       List<DataModel> dataList = List<DataModel>();
       for(int i=0; i<count;i++)

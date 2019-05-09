@@ -119,11 +119,13 @@ class mScreen extends StatelessWidget
                         ),
                            ),
                     //resu=resultList(firstWidget: Text("Hello")),
+                      
                     Container(
+                      margin: EdgeInsets.only(left: 10.0,top: 30.0,right: 10.0,bottom: 30.0),
                       child:
                     resu=resultList(),
-                    height: 100.0,
-                    width: 100.0,
+                    height: 300.0,
+                    //width: 100.0,
                     ),
               ],
             ),
@@ -153,30 +155,40 @@ class mScreen extends StatelessWidget
                    print(translation);
                   // results=translation as String;
                   //resu=resultList(firstWidget: Text(translation));
-                  // resu.changeResult1(translation);
+                  data=DataModel(input,l1,translation,l2,0);
                   _save(context,data);
                   return 
                   translation;
                   }
   void _save(BuildContext context,DataModel data) async{
     int result;
-    //Navigator.pop(false);
-    //if(data.id!=null){
-    //  result=await helper.updateData(data);
-   // } else{
-      result=await helper.insertData(data);
-    //}
-    if(result!=0){
-      _showSnackBar(context,'Translation saved successfully');
-    } else{
-      _showSnackBar(context,'Translation not saved');
-    }
     resu.updateListView();
+    //Navigator.pop(false);
+    if(data.id!=null){
+      result=await helper.updateData(data);
+    } else{
+      result=await helper.insertData(data);
+    }
+    if(result!=0){
+      print('Translation saved successfully');
+      /*Snackbar need fix most probable global keys
+      Builder(
+        builder: (context)
+        {
+          Scaffold.of(context).showSnackBar(SnackBar
+          (content: Text('Translation saved successfully'),
+          duration: Duration(seconds: 3),
+          ));},
+      );
+      */
+    } else{
+      print('Translation not saved succesfully');
+    }
   }
-  void _showSnackBar(BuildContext context, String  message){
-    final snackBar = SnackBar(content: Text(message),);
-    Scaffold.of(context).showSnackBar(snackBar);
-  }
+  //void _showSnackBar(BuildContext context, String  message){
+    //final snackBar = SnackBar(content: Text(message),);
+    //Scaffold.of(context).showSnackBar(snackBar);
+ // }
 }
 class swapButtonImage extends StatelessWidget
 {
@@ -435,9 +447,15 @@ class _dropDownState3 extends State<dropDown3>
 }
 
 class resultList extends StatefulWidget{
+  var rr;
   @override
   State<StatefulWidget> createState() {
-    return resultListState();
+    return rr=resultListState();
+  }
+  void updateListView()
+  {
+    if(rr!=null)
+    rr.updateListView();
   }
 }
 class resultListState extends State<resultList>{

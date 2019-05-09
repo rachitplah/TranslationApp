@@ -40,19 +40,22 @@ class DatabaseHelper{
     }
     void _createDb(Database db,int newVersion) async{
       await db.execute('CREATE TABLE $dTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colInput TEXT,'
-                       '$colICode TEXT, $colOutput TEXT, $colOCode TEXT, $colEmotion TEXT, $colUserId TEXT, $colRating INTEGER)');
+                       '$colICode TEXT, $colOutput TEXT, $colOCode TEXT, $colEmotion TEXT, $colUserId TEXT, $colRating INTEGER, PRIMARY KEY($colInput,$colICode,$colOCode))');
     }
     
     //Fetch Operations:
-    Future<List<Map<String,dynamic>>> getDataMapList(int op) async{
-      Database db=await this.database;
-      //var result= await db.rawQuery('SELECT * FROM $dTable order by $colRating DESC');
-      if (op==1){
-      var result= await db.rawQuery('SELECT * FROM $dTable WHERE $colInput=data.input AND $colICode=data.iCode AND $colOCode=data.oCode');
-      }
-      else{
+    Future<List<Map<String,dynamic>>> getDataMapList() async{
+      Database db=await this.database;  
       var result= await db.query(dTable, orderBy:'$colRating DESC'); //It same using helper functions
-      }
+      return result;
+    }
+    //Fetch results for main translation area
+    Future<List<Map<String,dynamic>>> getDataMapList2(String i,String iC,String oC) async{
+      Database db=await this.database;
+      //var result= await db.rawQuery('SELECT * FROM $dTable order by $colRating DESC WHERE $colInput=$i AND $colICode=$iC AND $colOCode=$oC');
+      var result= await db.rawQuery('SELECT * FROM $dTable WHERE $colInput="$i" AND $colICode="$iC" AND $colOCode="$oC" order by $colRating DESC');
+      //result= await db.query(dTable,where: 'colId =?,colInput=?',whereArgs: [data.id,data.input]);    
+      //var result= await db.query(dTable, orderBy:'$colRating DESC'); //It same using helper functions
       return result;
     }
     //Insert Operations:
@@ -80,9 +83,20 @@ class DatabaseHelper{
       int result = Sqflite.firstIntValue(x);
       return result;
     } 
-    //Convert Map list to Note list
-    Future<List<DataModel>> getDataList(int op) async {
-      var dataMapList = await getDataMapList(op);
+    //Convert Map list to Note list for community user list view
+    Future<List<DataModel>> getDataList() async {
+      var dataMapList = await getDataMapList();
+      int count=dataMapList.length;
+      List<DataModel> dataList = List<DataModel>();
+      for(int i=0; i<count;i++)
+      {
+        dataList.add(DataModel.fromMapObject(dataMapList[i]));
+      }
+      return dataList;
+    }
+    //Convert Map list to Note list for main translation
+    Future<List<DataModel>> getDataList2(String i,String iC,String oC) async {
+      var dataMapList = await getDataMapList2(i,iC,oC);
       int count=dataMapList.length;
       List<DataModel> dataList = List<DataModel>();
       for(int i=0; i<count;i++)

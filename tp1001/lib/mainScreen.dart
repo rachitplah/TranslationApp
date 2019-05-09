@@ -156,13 +156,12 @@ class mScreen extends StatelessWidget
                   // results=translation as String;
                   //resu=resultList(firstWidget: Text(translation));
                   data=DataModel(input,l1,translation,l2,0);
-                  _save(context,data);
+                  _save(context,data,input,l1,l2);
                   return 
                   translation;
                   }
-  void _save(BuildContext context,DataModel data) async{
+  void _save(BuildContext context,DataModel data,String i,String iC,String oC) async{
     int result;
-    resu.updateListView(1);
     //Navigator.pop(false);
     if(data.id!=null){
       result=await helper.updateData(data);
@@ -184,6 +183,7 @@ class mScreen extends StatelessWidget
     } else{
       print('Translation not saved succesfully');
     }
+        resu.updateListView2(i,iC,oC);
   }
 }
 class swapButtonImage extends StatelessWidget
@@ -446,10 +446,10 @@ class resultList extends StatefulWidget{
   State<StatefulWidget> createState() {
     return rr=resultListState();
   }
-  void updateListView(int op)
+  void updateListView2(String i,String iC,String oC)
   {
     if(rr!=null)
-    rr.updateListView(op);
+    rr.updateListView2(i,iC,oC);
   }
 }
 class resultListState extends State<resultList>{
@@ -460,7 +460,7 @@ class resultListState extends State<resultList>{
   Widget build(BuildContext context) {
     if (dataList==null){
       dataList=List<DataModel>();
-      updateListView(1);
+     // updateListView(1);
     }
     return getListView();
   }
@@ -492,17 +492,29 @@ class resultListState extends State<resultList>{
     if(result!=0){
     _showSnackBar(context,'Note Deleted Successfully');
     // TODO update list view.
-    updateListView(1);
+    //updateListView(1);
     }
   }
   void _showSnackBar(BuildContext context, String  message){
     final snackBar = SnackBar(content: Text(message),);
     Scaffold.of(context).showSnackBar(snackBar);
   }
-  void updateListView(int op){
+  void updateListView2(String i,String iC,String oC){
     final Future<Database> dbFuture= databaseHelper.initializeDatabase();
     dbFuture.then((database){
-        Future<List<DataModel>> dataListFuture = databaseHelper.getDataList(op);
+        Future<List<DataModel>> dataListFuture = databaseHelper.getDataList2(i,iC,oC);
+        dataListFuture.then((dataList){
+            setState(() {
+              this.dataList=dataList;
+              this.count=dataList.length;
+            });
+        });
+    });
+  }
+  void updateListView(){
+    final Future<Database> dbFuture= databaseHelper.initializeDatabase();
+    dbFuture.then((database){
+        Future<List<DataModel>> dataListFuture = databaseHelper.getDataList();
         dataListFuture.then((dataList){
             setState(() {
               this.dataList=dataList;

@@ -6,7 +6,7 @@ import 'package:tp1001/api.dart';
 import 'package:translator/translator.dart';
 import 'package:sqflite/sqflite.dart';
 var l1,l2;
-var emoti;
+var emoti,exists=0;
 String results="";
 var resu;
 class mScreen extends StatelessWidget
@@ -164,11 +164,13 @@ class mScreen extends StatelessWidget
   void _save(BuildContext context,DataModel data,String i,String iC,String oC) async{
     int result;
     //Navigator.pop(false);
-    if(data.id!=null){
-      result=await helper.updateData(data);
-    } else{
+    resu.updateListView2(i,iC,oC);
+    //if(data.id!=null){
+      //result=await helper.updateData(data);
+    //} else{
+      if(exists==0)
       result=await helper.insertData(data);
-    }
+    //}
     if(result!=0){
       print('Translation saved successfully');
       /*Snackbar need fix most probable global keys
@@ -184,7 +186,7 @@ class mScreen extends StatelessWidget
     } else{
       print('Translation not saved succesfully');
     }
-        resu.updateListView2(i,iC,oC);
+    exists=0;
   }
 }
 class swapButtonImage extends StatelessWidget
@@ -524,6 +526,8 @@ class resultListState extends State<resultList>{
             setState(() {
               this.dataList=dataList;
               this.count=dataList.length;
+              if(dataList.length>0)
+              exists=1;
             });
         });
     });

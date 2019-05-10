@@ -481,11 +481,20 @@ class resultListState extends State<resultList>{
                 child: ListTile(
                   leading: Icon(Icons.chevron_right),
                   title: Text(this.dataList[position].output),
-                  trailing: GestureDetector(
+                  trailing: 
+                  Row(
+                    children: <Widget>[
+                      GestureDetector(
+                      child:Icon(Icons.report),
+                      onTap:(){}
+                    ),
+                      GestureDetector(
                       child:Icon(Icons.arrow_upward),
                       onTap:(){}
+                    ),
+                  ],
                   ),
-                  onTap: (){
+                      onTap: (){
                     debugPrint("List Tapped");
                   }
                 ),

@@ -6,6 +6,7 @@ import 'package:tp1001/api.dart';
 import 'package:translator/translator.dart';
 import 'package:sqflite/sqflite.dart';
 var l1,l2;
+var emoti;
 String results="";
 var resu;
 class mScreen extends StatelessWidget
@@ -155,7 +156,7 @@ class mScreen extends StatelessWidget
                    print(translation);
                   // results=translation as String;
                   //resu=resultList(firstWidget: Text(translation));
-                  data=DataModel(input,l1,translation,l2,0);
+                  data=DataModel(input,l1,translation,l2,0,emoti);
                   _save(context,data,input,l1,l2);
                   return 
                   translation;
@@ -398,6 +399,7 @@ class _dropDownState3 extends State<dropDown3>
     return
               DropdownButton<String>(
                      items:_languages.map((String dropDownStringItem) {
+                       _setEmo(_onDropDownItemSelected);
                        return DropdownMenuItem<String>(
                            value: dropDownStringItem,
                            child:
@@ -425,7 +427,7 @@ class _dropDownState3 extends State<dropDown3>
                      }).toList(),
                      onChanged: (String newValueSelected){
                        _onDropDownItemSelected(newValueSelected);
-                       
+                       _setEmo(_onDropDownItemSelected);
                      },
                      value: _currentItemSelected,
                      
@@ -438,6 +440,10 @@ class _dropDownState3 extends State<dropDown3>
                         this._currentItemSelected=newValueSelected; 
     });
   }
+  void _setEmo(var val)
+  {
+     emoti=val;
+  }  
 }
 
 class resultList extends StatefulWidget{
@@ -487,6 +493,7 @@ class resultListState extends State<resultList>{
           },
       );
   }
+  /*
   void _delete(BuildContext context,DataModel data) async{
     int result=await databaseHelper.deleteData(data.id);
     if(result!=0){
@@ -499,6 +506,7 @@ class resultListState extends State<resultList>{
     final snackBar = SnackBar(content: Text(message),);
     Scaffold.of(context).showSnackBar(snackBar);
   }
+  */
   void updateListView2(String i,String iC,String oC){
     final Future<Database> dbFuture= databaseHelper.initializeDatabase();
     dbFuture.then((database){

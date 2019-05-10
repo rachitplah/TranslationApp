@@ -1,14 +1,15 @@
 # tp1001
 
-A new Flutter project.
+Translation App Flutter project.
+
+Project code name: Abhivadin
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is a starting point of this Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+A few Flutter resources:
 
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
 
 For help getting started with Flutter, view our 

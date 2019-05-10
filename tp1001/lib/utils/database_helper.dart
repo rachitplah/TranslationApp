@@ -39,8 +39,9 @@ class DatabaseHelper{
       return dataDatabase;
     }
     void _createDb(Database db,int newVersion) async{
-      await db.execute('CREATE TABLE $dTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colInput TEXT,'
-                       '$colICode TEXT, $colOutput TEXT, $colOCode TEXT, $colEmotion TEXT, $colUserId TEXT, $colRating INTEGER, PRIMARY KEY($colInput,$colICode,$colOCode))');
+      await db.execute('CREATE TABLE $dTable($colId INTEGER AUTOINCREMENT, $colInput TEXT,'
+                       '$colICode TEXT, $colOutput TEXT, $colOCode TEXT, $colEmotion TEXT, $colUserId TEXT, $colRating INTEGER,'
+                      'PRIMARY KEY($colInput,$colICode,$colOCode,$colId,$colEmotion,$colRating))');
     }
     
     //Fetch Operations:
@@ -71,11 +72,13 @@ class DatabaseHelper{
       return result;
     }
     //Delete Operations:
+    /*
     Future<int> deleteData(int id) async{
       Database db=await this.database;
       var result= await db.rawDelete('DELETE FROM $dTable WHERE $colId = $id');
       return result;
     }
+    */
     //Get no. records in dB
     Future<int> getCount() async{
       Database db=await this.database;

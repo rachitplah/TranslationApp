@@ -156,7 +156,7 @@ class mScreen extends StatelessWidget
                    print(translation);
                   // results=translation as String;
                   //resu=resultList(firstWidget: Text(translation));
-                  data=DataModel(input,l1,translation,l2,0,emoti);
+                  data=DataModel(input,l1,translation,l2,emoti,0);
                   _save(context,data,input,l1,l2);
                   return 
                   translation;
@@ -186,6 +186,7 @@ class mScreen extends StatelessWidget
     } else{
       print('Translation not saved succesfully');
     }
+    resu.updateListView2(i,iC,oC);
     exists=0;
   }
 }
@@ -401,7 +402,7 @@ class _dropDownState3 extends State<dropDown3>
     return
               DropdownButton<String>(
                      items:_languages.map((String dropDownStringItem) {
-                       _setEmo(_onDropDownItemSelected);
+                       _setEmo(_currentItemSelected);
                        return DropdownMenuItem<String>(
                            value: dropDownStringItem,
                            child:
@@ -429,7 +430,7 @@ class _dropDownState3 extends State<dropDown3>
                      }).toList(),
                      onChanged: (String newValueSelected){
                        _onDropDownItemSelected(newValueSelected);
-                       _setEmo(_onDropDownItemSelected);
+                       _setEmo(_currentItemSelected);
                      },
                      value: _currentItemSelected,
                      
@@ -483,8 +484,11 @@ class resultListState extends State<resultList>{
                 child: ListTile(
                   leading: Icon(Icons.chevron_right),
                   title: Text(this.dataList[position].output),
-                  trailing: 
-                  Row(
+                  trailing: GestureDetector(
+                      child:Icon(Icons.arrow_upward),
+                      onTap:(){}
+                    ),
+                  /*Row(
                     children: <Widget>[
                       GestureDetector(
                       child:Icon(Icons.report),
@@ -495,7 +499,7 @@ class resultListState extends State<resultList>{
                       onTap:(){}
                     ),
                   ],
-                  ),
+                  ),*/
                       onTap: (){
                     debugPrint("List Tapped");
                   }

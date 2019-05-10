@@ -9,8 +9,8 @@ class DataModel{
   int _rating;
   
   //Constructors defined
-  DataModel(this._input,this._iCode,this._output,this._oCode,this._rating,this._emotion,[this._userId]);
-  DataModel.withId(this._id,this._input,this._iCode,this._output,this._oCode,this._rating,this._emotion,[this._userId]);
+  DataModel(this._input,this._iCode,this._output,this._oCode,this._emotion,this._rating,[this._userId]);
+  DataModel.withId(this._id,this._input,this._iCode,this._output,this._oCode,this._emotion,this._rating,[this._userId]);
   
   //Getters defined
   int get id => _id;

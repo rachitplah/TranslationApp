@@ -39,9 +39,8 @@ class DatabaseHelper{
       return dataDatabase;
     }
     void _createDb(Database db,int newVersion) async{
-      await db.execute('CREATE TABLE $dTable($colId INTEGER AUTOINCREMENT, $colInput TEXT,'
-                       '$colICode TEXT, $colOutput TEXT, $colOCode TEXT, $colEmotion TEXT, $colUserId TEXT, $colRating INTEGER,'
-                      'PRIMARY KEY($colInput,$colICode,$colOCode,$colEmotion,$colRating))');
+      await db.execute('CREATE TABLE $dTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colInput TEXT,'
+                       '$colICode TEXT, $colOutput TEXT, $colOCode TEXT, $colEmotion TEXT, $colUserId TEXT, $colRating INTEGER)');
     }
     
     //Fetch Operations:

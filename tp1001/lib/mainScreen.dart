@@ -484,11 +484,14 @@ class resultListState extends State<resultList>{
                 child: ListTile(
                   leading: Icon(Icons.chevron_right),
                   title: Text(this.dataList[position].output),
-                  trailing: GestureDetector(
+                  trailing: 
+                      /*   GestureDetector(
                       child:Icon(Icons.arrow_upward),
                       onTap:(){}
-                    ),
-                  /*Row(
+                    ),*/
+                    Expanded(
+                      child:
+                  Row(
                     children: <Widget>[
                       GestureDetector(
                       child:Icon(Icons.report),
@@ -499,7 +502,8 @@ class resultListState extends State<resultList>{
                       onTap:(){}
                     ),
                   ],
-                  ),*/
+                  ),
+                    ),
                       onTap: (){
                     debugPrint("List Tapped");
                   }
@@ -549,49 +553,3 @@ class resultListState extends State<resultList>{
     });
   }
 }
-
-/*
-class resultList extends StatefulWidget{
-  resultList({this.firstWidget});
-  final Widget firstWidget;
-  @override
-  State<StatefulWidget> createState() {
-    return resultListState();
-  }
- // void changeResult1(State<resultList>,String result)
- // {
- //     resultListState().changeResult(context,result);
- // }
-}
-class resultListState extends State<resultList>{
-  String res="See results here";
-  @override
-  Widget build(BuildContext context) {
-    return Container (
-                      height: 100.0,
-                        child: 
-                           ListView(
-                             children: <Widget>[
-                                ListTile(                               
-                                leading: Icon(Icons.chevron_right),
-                                title: widget.firstWidget,
-                                //Text(res),
-                                trailing: GestureDetector(
-                                     child:Icon(Icons.arrow_upward),
-                                onTap:(){}
-                                 ),
-                                ),
-                               ],
-                           ),
-                    );
-  }
-  //String 
-  void changeResult(String result)
-  {
-       setState(() {
-                        this.res=results; 
-    });
-    //return res;
-  }
-}
-*/

@@ -9,6 +9,8 @@ var l1,l2;
 var emoti,exists=0;
 String results="";
 var resu;
+DataModel dd;
+DatabaseHelper hh;
 class mScreen extends StatelessWidget
 { TextEditingController inputTController=TextEditingController();
   //var l1,l2;
@@ -53,6 +55,7 @@ class mScreen extends StatelessWidget
                    print(userInput);
                    print(l1);
                      print(l2);
+                  hh=helper;
                   results=await (convert1(userInput,l1,l2,context,data) as String);
                    print('This is $results');
 
@@ -125,7 +128,7 @@ class mScreen extends StatelessWidget
                       margin: EdgeInsets.only(left: 10.0,top: 30.0,right: 10.0,bottom: 30.0),
                       child:
                     resu=resultList(),
-                    height: 300.0,
+                    height: 200.0,
                     //width: 100.0,
                     ),
               ],
@@ -157,6 +160,7 @@ class mScreen extends StatelessWidget
                   // results=translation as String;
                   //resu=resultList(firstWidget: Text(translation));
                   data=DataModel(input,l1,translation,l2,emoti,0);
+                  dd=data;
                   _save(context,data,input,l1,l2);
                   return 
                   translation;
@@ -188,6 +192,10 @@ class mScreen extends StatelessWidget
     }
     resu.updateListView2(i,iC,oC);
     exists=0;
+  }
+  DataModel _returnDataModel()
+  {
+    return this.data;
   }
 }
 class swapButtonImage extends StatelessWidget
@@ -482,29 +490,20 @@ class resultListState extends State<resultList>{
                 color: Colors.white,
                 elevation: 8.0,
                 child: ListTile(
-                  leading: Icon(Icons.chevron_right),
+                  leading: GestureDetector(
+                       child:Icon(Icons.arrow_upward),
+                      onTap:(){
+                        _increaseRating(1);
+                      }
+                    ),
                   title: Text(this.dataList[position].output),
-                  trailing: 
-                      /*   GestureDetector(
-                      child:Icon(Icons.arrow_upward),
-                      onTap:(){}
-                    ),*/
-                    Expanded(
-                      child:
-                  Row(
-                    children: <Widget>[
-                      GestureDetector(
-                      child:Icon(Icons.report),
-                      onTap:(){}
+                  trailing: GestureDetector(
+                      child:Icon(Icons.arrow_downward),
+                      onTap:(){
+                        _increaseRating(0);
+                      }
                     ),
-                      GestureDetector(
-                      child:Icon(Icons.arrow_upward),
-                      onTap:(){}
-                    ),
-                  ],
-                  ),
-                    ),
-                      onTap: (){
+                  onTap: (){
                     debugPrint("List Tapped");
                   }
                 ),
@@ -526,6 +525,14 @@ class resultListState extends State<resultList>{
     Scaffold.of(context).showSnackBar(snackBar);
   }
   */
+  void _increaseRating(int i)
+  { 
+    if(i==1)
+      dd.rating=dd.rating+1;
+    else
+      dd.rating=dd.rating-1;
+      hh.updateData(dd);
+  }
   void updateListView2(String i,String iC,String oC){
     final Future<Database> dbFuture= databaseHelper.initializeDatabase();
     dbFuture.then((database){

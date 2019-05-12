@@ -15,185 +15,199 @@ class LoginScreen1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body:Material(
-      child:new Container(
+      child:Container(
       height: MediaQuery.of(context).size.height,
       decoration: BoxDecoration(
         color: this.backgroundColor,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.max,
+      child: ListView(
+        //crossAxisAlignment: CrossAxisAlignment.start,
+        //mainAxisSize: MainAxisSize.max,
         children: <Widget>[
-          new ClipPath(
+          ClipPath(
             clipper: MyClipper(),
             child: Container(
               decoration: BoxDecoration(
-                image: new DecorationImage(
+                image: DecorationImage(
                   image: this.backgroundImage,
                   fit: BoxFit.cover,
                 ),
               ),
               alignment: Alignment.center,
               padding: EdgeInsets.only(top: 150.0, bottom: 100.0),
-              child: Column(
+              child: 
+              Container(
+                             margin: EdgeInsets.only(left: 10.0,top: 30.0,right: 10.0),
+                             
+                             decoration: BoxDecoration(
+                         borderRadius: BorderRadius.circular(30.0),
+                         color: Colors.white.withOpacity(0.5),
+                         //border: Border.all(
+                           //     color: Colors.blue[400],
+                             //   width: 2.0,
+                               // style: BorderStyle.solid,
+                         //),
+                       ),
+                       child:
+              Column(
                 children: <Widget>[
                   Text(
                     "𑀅𑀪𑀺𑀯𑀸𑀤𑀺𑀦𑁆",
                     style: TextStyle(
                         fontSize: 50.0,
                         fontWeight: FontWeight.bold,
-                        color: this.primaryColor),
+                        color: this.primaryColor,
+                        shadows: [
+                             Shadow(
+                               offset: Offset(-1.5, -1.5),
+                               color: Colors.black
+                             ),
+                             Shadow(
+                               offset: Offset(1.5, -1.5),
+                               color: Colors.black
+                             ),
+                             Shadow(
+                               offset: Offset(1.5, 1.5),
+                               color: Colors.black
+                             ),
+                             Shadow(
+                               offset: Offset(-1.5, 1.5),
+                               color: Colors.black
+                             ),
+                        ],
+                        ),
                   ),
                   Text(
                     "abhivadin",
                     style: TextStyle(
                         fontSize: 25.0,
                         fontWeight: FontWeight.bold,
-                        color: this.primaryColor),
+                        color: this.primaryColor,
+                        shadows: [
+                             Shadow(
+                               offset: Offset(-1.5, -1.5),
+                               color: Colors.black
+                             ),
+                             Shadow(
+                               offset: Offset(1.5, -1.5),
+                               color: Colors.black
+                             ),
+                             Shadow(
+                               offset: Offset(1.5, 1.5),
+                               color: Colors.black
+                             ),
+                             Shadow(
+                               offset: Offset(-1.5, 1.5),
+                               color: Colors.black
+                             ),
+                        ],
+                        ),
                   ),
                 ],
+              ),
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 40.0),
-            child: Text(
-              "Email",
-              style: TextStyle(color: Colors.grey, fontSize: 16.0),
-            ),
-          ),
-          Container(
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.grey.withOpacity(0.5),
-                width: 1.0,
-              ),
-              borderRadius: BorderRadius.circular(20.0),
-            ),
-            margin:
-            const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-            child: Row(
+            padding:
+                  EdgeInsets.only(left:20.0,right:20.0,bottom: 10.0,top:30.0),
+            child:
+          Row(
               children: <Widget>[
-                new Padding(
+                  Padding(
                   padding:
-                  EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+                  EdgeInsets.symmetric(vertical: 10.0),
                   child: Icon(
                     Icons.person_outline,
                     color: Colors.grey,
                   ),
                 ),
-                Container(
-                  height: 30.0,
-                  width: 1.0,
-                  color: Colors.grey.withOpacity(0.5),
-                  margin: const EdgeInsets.only(left: 00.0, right: 10.0),
+                Expanded(
+                  child: Container(
+              //padding: EdgeInsets.only(left:10.0,right:10.0,bottom: 10.0,top:30.0),
+              child:
+            TextField(
+              style: TextStyle(color: Colors.grey),
+              onSubmitted: (String userInput) async{
+                   
+                  // resultListState().changeResult(res);
+                   
+              },
+              //controller: inputTController,
+              decoration: InputDecoration(
+                labelText: 'Enter email here',
+                labelStyle: TextStyle(color: Colors.grey),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(30.0)
                 ),
-                new Expanded(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Enter your email',
-                      hintStyle: TextStyle(color: Colors.grey),
-                    ),
-                  ),
+              ),
+            ),
+            ),
                 )
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 40.0),
-            child: Text(
-              "Password",
-              style: TextStyle(color: Colors.grey, fontSize: 16.0),
-            ),
-          ),
-          Container(
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.grey.withOpacity(0.5),
-                width: 1.0,
-              ),
-              borderRadius: BorderRadius.circular(20.0),
-            ),
-            margin:
-            const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-            child: Row(
+          
+           Padding(
+            padding:
+                  EdgeInsets.only(left:20.0,right:20.0,bottom: 10.0,top:20.0),
+            child:
+          Row(
               children: <Widget>[
-                new Padding(
+                  Padding(
                   padding:
-                  EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+                  EdgeInsets.symmetric(vertical: 10.0),
                   child: Icon(
                     Icons.lock_open,
                     color: Colors.grey,
                   ),
                 ),
-                Container(
-                  height: 30.0,
-                  width: 1.0,
-                  color: Colors.grey.withOpacity(0.5),
-                  margin: const EdgeInsets.only(left: 00.0, right: 10.0),
+                Expanded(
+                  child: Container(
+              //padding: EdgeInsets.only(left:10.0,right:10.0,bottom: 10.0,top:30.0),
+              child:
+            TextField(
+              style: TextStyle(color: Colors.grey),
+              onSubmitted: (String userInput) async{
+                   
+                  // resultListState().changeResult(res);
+                   
+              },
+              //controller: inputTController,
+              obscureText: true,
+              decoration: InputDecoration(
+                labelText: 'Enter password here',
+                labelStyle: TextStyle(color: Colors.grey),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(30.0)
                 ),
-                new Expanded(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Enter your password',
-                      hintStyle: TextStyle(color: Colors.grey),
-                    ),
-                  ),
+              ),
+            ),
+            ),
                 )
               ],
             ),
           ),
-          Container(
-            margin: const EdgeInsets.only(top: 20.0),
-            padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-            child: new Row(
-              children: <Widget>[
-                new Expanded(
-                  child: FlatButton(
-                    shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(30.0)),
-                    splashColor: this.primaryColor,
-                    color: this.primaryColor,
-                    child: new Row(
-                      children: <Widget>[
-                        new Padding(
-                          padding: const EdgeInsets.only(left: 20.0),
-                          child: Text(
+          Padding(
+                   padding: EdgeInsets.only(top:20,left:20,right:20),
+                   child:
+                   Container(
+                     child: RaisedButton(
+                               child: Text(
                             "LOGIN",
                             style: TextStyle(color: Colors.white),
                           ),
-                        ),
-                        new Expanded(
-                          child: Container(),
-                        ),
-                        new Transform.translate(
-                          offset: Offset(15.0, 0.0),
-                          child: new Container(
-                            padding: const EdgeInsets.all(5.0),
-                            child: FlatButton(
-                              shape: new RoundedRectangleBorder(
-                                  borderRadius:
-                                  new BorderRadius.circular(28.0)),
-                              splashColor: Colors.white,
-                              color: Colors.white,
-                              child: Icon(
-                                Icons.arrow_forward,
-                                color: this.primaryColor,
-                              ),
-                              onPressed: () => {},
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                    onPressed: () => {},
-                  ),
-                ),
-              ],
-            ),
-          ),
+                              color: Colors.blue[400],
+                              padding: EdgeInsets.all(0),
+                              elevation: 10.0,
+                              shape: RoundedRectangleBorder(
+                                     borderRadius: BorderRadius.circular(30.0)),
+                              onPressed: ()=>{},
+                           ),
+                      // width: 50.0,
+                       height: 50.0,
+                   ),
+                 ),
           Container(
             margin: const EdgeInsets.only(top: 20.0),
             padding: const EdgeInsets.only(left: 20.0, right: 20.0),

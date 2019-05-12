@@ -45,9 +45,9 @@ class LoginScreen1 extends StatelessWidget {
                         color: this.primaryColor),
                   ),
                   Text(
-                    "Abhivadin",
+                    "abhivadin",
                     style: TextStyle(
-                        fontSize: 15.0,
+                        fontSize: 25.0,
                         fontWeight: FontWeight.bold,
                         color: this.primaryColor),
                   ),

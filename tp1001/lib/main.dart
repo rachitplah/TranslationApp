@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 import 'package:flutter/material.dart';
 import 'package:tp1001/mainScreen.dart';
+import 'package:tp1001/loginScreen.dart';
 
 /// The function that is called when main.dart is run.
 void main()=>runApp(tp101App());
@@ -14,7 +15,7 @@ class tp101App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Abhivadin',
-      home: mScreen(),
+      home: LoginScreen1(),
     );
   }
 }

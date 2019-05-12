@@ -50,6 +50,7 @@ flutter:
     - assests/icons/keyboard_voice.png
     - assests/icons/swap_horiz.png
     - assests/icons/translate.png
+    - assests/images/languages.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.

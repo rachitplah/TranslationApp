@@ -67,7 +67,8 @@ class DatabaseHelper{
     //Update Operations:
     Future<int> updateData(DataModel data) async{
       Database db=await this.database;
-      var result= await db.update(dTable, data.toMap(),where: 'colId =?',whereArgs: [data.id]);
+      //var result= await db.update(dTable, data.toMap(),where: 'colId =?',whereArgs: [data.id]);
+      var result= await db.rawUpdate('UPDATE $dTable SET $colRating=$data.rating WHERE $colUserId=$data.userId AND $colOutput="$data.output"');
       return result;
     }
     //Delete Operations:

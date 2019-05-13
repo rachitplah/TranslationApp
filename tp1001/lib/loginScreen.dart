@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tp1001/mainScreen.dart';
 
-/*
+
 class LoginScreen1 extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
@@ -9,8 +9,8 @@ class LoginScreen1 extends StatefulWidget{
   }
 }
 class LoginScreen1State extends State<LoginScreen1>{
-  */
-class LoginScreen1 extends StatelessWidget{
+  
+//class LoginScreen1 extends StatelessWidget{
    Color primaryColor=Colors.lightBlueAccent;
    Color backgroundColor=Colors.white;
    AssetImage backgroundImage=AssetImage('assests/images/languages.jpg');
@@ -38,7 +38,9 @@ class LoginScreen1 extends StatelessWidget{
       decoration: BoxDecoration(
         color: this.backgroundColor,
       ),
-      child: ListView(
+      child: 
+      Form(child:
+      ListView(
         //crossAxisAlignment: CrossAxisAlignment.start,
         //mainAxisSize: MainAxisSize.max,
         children: <Widget>[
@@ -144,7 +146,7 @@ class LoginScreen1 extends StatelessWidget{
                   child: Container(
               //padding: EdgeInsets.only(left:10.0,right:10.0,bottom: 10.0,top:30.0),
               child:
-            TextField(
+            TextFormField(
               style: TextStyle(color: Colors.grey),
               controller: emailTController,
               //onSubmitted: (String userInput) {
@@ -185,7 +187,7 @@ class LoginScreen1 extends StatelessWidget{
                   child: Container(
               //padding: EdgeInsets.only(left:10.0,right:10.0,bottom: 10.0,top:30.0),
               child:
-            TextField(
+            TextFormField(
               style: TextStyle(color: Colors.grey),
               //onSubmitted: (String userInput) async{
                    
@@ -258,6 +260,7 @@ class LoginScreen1 extends StatelessWidget{
 
 
         ],
+      ),
       ),
       ),
       ),

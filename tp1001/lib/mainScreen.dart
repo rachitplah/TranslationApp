@@ -7,12 +7,9 @@ import 'package:tp1001/api.dart';
 import 'package:translator/translator.dart';
 import 'package:sqflite/sqflite.dart';
 var l1,l2;
-//String useId=null;
 var emoti,exists=0;
 String results="";
-var resu;
-//DataModel dd;
-//DatabaseHelper hh;
+var resu,resu2;
 class mScreen extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
@@ -54,7 +51,7 @@ class mScreenState extends State<mScreen> with AutomaticKeepAliveClientMixin{
         actions: <Widget>[
           Padding(
            padding: EdgeInsets.only(right: 10.0),
-           child: Icon(Icons.search),
+           child: Icon(Icons.translate),
           ),
         ],
         bottom: TabBar(
@@ -104,7 +101,6 @@ class mScreenState extends State<mScreen> with AutomaticKeepAliveClientMixin{
                    print(userInput);
                    print(l1);
                      print(l2);
-                  //hh=helper;
                   results=await (convert1(userInput,l1,l2,context,data) as String);
                    print('This is $results');
 
@@ -185,7 +181,7 @@ class mScreenState extends State<mScreen> with AutomaticKeepAliveClientMixin{
           ),
         ),
       ),
-      resultList(),
+      resu2=resultList2(),
       resultList(),
         ],
       ),
@@ -204,6 +200,10 @@ class mScreenState extends State<mScreen> with AutomaticKeepAliveClientMixin{
     );
   }
   Future<String> convert1(String input,String l1, String l2,BuildContext context,DataModel data) async{
+                   resu2.updateListView();
+                   await resu.updateListView2(input,l1,l2);
+                   if(exists==0)
+                     {
                    GoogleTranslator translator =GoogleTranslator();
                    //translator.translate(input, from: 'en', to: 'ru').then((s)
                    //{
@@ -211,46 +211,33 @@ class mScreenState extends State<mScreen> with AutomaticKeepAliveClientMixin{
                    //});
                    var translation = await translator.translate(input, from: l1, to: l2);
                    print(translation);
-                  // results=translation as String;
                   //resu=resultList(firstWidget: Text(translation));
                   data=DataModel(input,l1,translation,l2,emoti,0,useId);
                  // dd=data;
-                  _save(context,data,input,l1,l2);
+                 int result;
+                  result=await helper.insertData(data);
+                 if(result!=0)
+                  print('Translation saved successfully');
+                  //_save(context,data,input,l1,l2);
+                  await resu.updateListView2(input,l1,l2);
                   return 
                   translation;
+                     }
+                     else
+                     return 'false';
                   }
-  void _save(BuildContext context,DataModel data,String i,String iC,String oC) async{
+ /* void _save(BuildContext context,DataModel data,String i,String iC,String oC) async{
     int result;
-    //Navigator.pop(false);
-    resu.updateListView2(i,iC,oC);
-    //if(data.id!=null){
-      //result=await helper.updateData(data);
-    //} else{
-      if(exists==0)
-      result=await helper.insertData(data);
-    //}
+    result=await helper.insertData(data);
     if(result!=0){
       print('Translation saved successfully');
-      /*Snackbar need fix most probable global keys
-      Builder(
-        builder: (context)
-        {
-          Scaffold.of(context).showSnackBar(SnackBar
-          (content: Text('Translation saved successfully'),
-          duration: Duration(seconds: 3),
-          ));},
-      );
-      */
+      resu2.updateListView();
     } else{
       print('Translation not saved succesfully');
     }
     resu.updateListView2(i,iC,oC);
-    exists=0;
-  }
-  DataModel _returnDataModel()
-  {
-    return this.data;
-  }
+    //exists=0;
+    }*/
 }
 class swapButtonImage extends StatelessWidget
 {
@@ -522,6 +509,11 @@ class resultList extends StatefulWidget{
     if(rr!=null)
     rr.updateListView2(i,iC,oC);
   }
+  void updateListView()
+  {
+    if(rr!=null)
+    rr.updateListView();
+  }
 }
 class resultListState extends State<resultList> with AutomaticKeepAliveClientMixin{
   DatabaseHelper databaseHelper = DatabaseHelper();
@@ -599,6 +591,132 @@ class resultListState extends State<resultList> with AutomaticKeepAliveClientMix
               this.count=dataList.length;
               if(dataList.length>0)
               exists=1;
+              else
+              exists=0;
+            });
+        });
+    });
+  }
+  void updateListView(){
+    final Future<Database> dbFuture= databaseHelper.initializeDatabase();
+    dbFuture.then((database){
+        Future<List<DataModel>> dataListFuture = databaseHelper.getDataList();
+        dataListFuture.then((dataList){
+            setState(() {
+              this.dataList=dataList;
+              this.count=dataList.length;
+            });
+        });
+    });
+  }
+}
+class resultList2 extends StatefulWidget{
+  var rr;
+  @override
+  State<StatefulWidget> createState() {
+    return rr=resultListState2();
+  }
+  void updateListView2(String i,String iC,String oC)
+  {
+    if(rr!=null)
+    rr.updateListView2(i,iC,oC);
+  }
+  void updateListView()
+  {
+    if(rr!=null)
+    rr.updateListView();
+  }
+}
+class resultListState2 extends State<resultList2> with AutomaticKeepAliveClientMixin{
+  DatabaseHelper databaseHelper = DatabaseHelper();
+  List<DataModel> dataList;
+  int count=0;
+  @override
+  bool get wantKeepAlive=>true;
+  @override
+  Widget build(BuildContext context) {
+    if (dataList==null){
+      dataList=List<DataModel>();
+     // updateListView(1);
+    }
+    return getListView();
+  }
+    ListView getListView(){
+      return
+       ListView.builder(
+          itemCount: count,
+          itemBuilder: (BuildContext context,int position){
+            return Card(
+                color: Colors.white,
+                elevation: 8.0,
+                child: ListTile(
+                  leading: GestureDetector(
+                       child:Icon(Icons.arrow_upward),
+                      onTap:(){
+                        _increaseRating(1,this.dataList[position]);
+                      }
+                    ),
+                  title: 
+                  Column(
+                      children: <Widget>[
+                            Text(this.dataList[position].input),
+                            Text(this.dataList[position].output),
+                      ],
+                  ),
+                  subtitle: Column(
+                      children: <Widget>[
+                            Text(this.dataList[position].iCode+'->'+this.dataList[position].oCode),
+                            Text(this.dataList[position].emotion),
+                      ],
+                  ),
+                  trailing: GestureDetector(
+                      child:Icon(Icons.edit),
+                      onTap:(){
+                        //_increaseRating(0,this.dataList[position]);
+                      }
+                    ),
+                  onTap: (){
+                    debugPrint("List Tapped");
+                  }
+                ),
+            );
+          },
+      );
+  }
+  /*
+  void _delete(BuildContext context,DataModel data) async{
+    int result=await databaseHelper.deleteData(data.id);
+    if(result!=0){
+    _showSnackBar(context,'Note Deleted Successfully');
+    // TODO update list view.
+    //updateListView(1);
+    }
+  }
+  void _showSnackBar(BuildContext context, String  message){
+    final snackBar = SnackBar(content: Text(message),);
+    Scaffold.of(context).showSnackBar(snackBar);
+  }
+  */
+  void _increaseRating(int i,DataModel data)
+  { 
+    if(i==1)
+      data.rating=data.rating+1;
+    else
+      data.rating=data.rating-1;
+      databaseHelper.updateData(data);
+  }
+  void updateListView2(String i,String iC,String oC){
+    final Future<Database> dbFuture= databaseHelper.initializeDatabase();
+    dbFuture.then((database){
+        Future<List<DataModel>> dataListFuture = databaseHelper.getDataList2(i,iC,oC);
+        dataListFuture.then((dataList){
+            setState(() {
+              this.dataList=dataList;
+              this.count=dataList.length;
+              if(dataList.length>0)
+              exists=1;
+              else
+              exists=0;
             });
         });
     });

@@ -14,6 +14,9 @@ class LoginScreen1 extends StatelessWidget{
    Color primaryColor=Colors.lightBlueAccent;
    Color backgroundColor=Colors.white;
    AssetImage backgroundImage=AssetImage('assests/images/languages.jpg');
+   TextEditingController emailTController=TextEditingController();
+   TextEditingController passTController=TextEditingController();
+
 /*
   LoginScreen1({
     Key key,
@@ -22,7 +25,13 @@ class LoginScreen1 extends StatelessWidget{
 */
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return 
+    WillPopScope(
+     onWillPop: (){
+       moveToLastScreen(context);
+     },
+      child:
+    Scaffold(
       body:Material(
       child:Container(
       height: MediaQuery.of(context).size.height,
@@ -137,11 +146,12 @@ class LoginScreen1 extends StatelessWidget{
               child:
             TextField(
               style: TextStyle(color: Colors.grey),
-              onSubmitted: (String userInput) async{
+              controller: emailTController,
+              //onSubmitted: (String userInput) {
                    
                   // resultListState().changeResult(res);
                    
-              },
+              //},
               //controller: inputTController,
               decoration: InputDecoration(
                 labelText: 'Enter email here',
@@ -177,12 +187,12 @@ class LoginScreen1 extends StatelessWidget{
               child:
             TextField(
               style: TextStyle(color: Colors.grey),
-              onSubmitted: (String userInput) async{
+              //onSubmitted: (String userInput) async{
                    
                   // resultListState().changeResult(res);
                    
-              },
-              //controller: inputTController,
+              //},
+              controller: passTController,
               obscureText: true,
               decoration: InputDecoration(
                 labelText: 'Enter password here',
@@ -212,7 +222,9 @@ class LoginScreen1 extends StatelessWidget{
                               shape: RoundedRectangleBorder(
                                      borderRadius: BorderRadius.circular(30.0)),
                               onPressed: (){
-                                Navigator.of(context).pushReplacement( MaterialPageRoute(builder: (BuildContext context) => mScreen()));
+                                //Navigator.of(context).pushReplacementNamed('/screen2');
+                                //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => mScreen()));
+                                moveToLastScreen(context);
                               },
                            ),
                       // width: 50.0,
@@ -249,7 +261,12 @@ class LoginScreen1 extends StatelessWidget{
       ),
       ),
       ),
+    ),
     );
+  }
+  void moveToLastScreen(BuildContext context)
+  { String ss=emailTController.text;
+    Navigator.pop(context,ss);
   }
 }
 

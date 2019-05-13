@@ -16,11 +16,13 @@ class tp101App extends StatefulWidget{
     return tp101AppState();
   }
 }
-class tp101AppState extends State<tp101App> with AutomaticKeepAliveClientMixin{
+class tp101AppState extends State<tp101App> 
+//with AutomaticKeepAliveClientMixin
+{
 
 //class tp101App extends StatelessWidget{
-  @override
-  bool get wantKeepAlive=>true;
+  //@override
+  //bool get wantKeepAlive=>true;
   @override
   Widget build(BuildContext context) {
      // loginCheck(context);

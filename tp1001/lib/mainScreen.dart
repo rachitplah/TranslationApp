@@ -7,7 +7,7 @@ import 'package:tp1001/api.dart';
 import 'package:translator/translator.dart';
 import 'package:sqflite/sqflite.dart';
 var l1,l2;
-String useId=null;
+//String useId=null;
 var emoti,exists=0;
 String results="";
 var resu;
@@ -23,46 +23,29 @@ class mScreenState extends State<mScreen> with AutomaticKeepAliveClientMixin{
   
  TextEditingController inputTController=TextEditingController();
   //var l1,l2;
+  String useId=null;
   DataModel data;
   DatabaseHelper helper=DatabaseHelper();
-  Future<String> loginId()
-  async{
-    return
-     Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => LoginScreen1()));
+  //String
+  void loginId(BuildContext context)async{
+     useId=await Navigator.push(context,MaterialPageRoute(builder: (context) {
+       return LoginScreen1();
+     }));
   }
   void checkUseId()
-  {
+  async{ 
     if(useId==null)
-    useId=(loginId() as String);
+     {await(loginId(context));
+      setState(() {});
+     }
   }
   @override
   bool get wantKeepAlive=>true;
-  /*
+
   @override
-  void initState(){
-    super.initState();
-    tabController=TabController(vsync: this,length: 3)
-    ..addListener((){
-      setState((){
-        switch (tabController.index){
-          case 0:
-          break;
-          case 1:
-          fabIcon=Icons.message;
-          break;
-          case 2:
-          fabIcon=Icons.camera_enhance;
-          break;
-          case 3:
-          fabIcon=Icons.call;
-          break;
-        }
-      });
-    });
-  }*/
-  @override
-  Widget build(BuildContext context) {
-    checkUseId();
+  Widget build(BuildContext context)
+   {
+    //checkUseId();
     return DefaultTabController(
       length: 3,
     child: Scaffold(
@@ -116,6 +99,7 @@ class mScreenState extends State<mScreen> with AutomaticKeepAliveClientMixin{
               child:
             TextField(
               style: TextStyle(color: Colors.white),
+              onTap:() {checkUseId();},
               onSubmitted: (String userInput) async{
                    print(userInput);
                    print(l1);
@@ -229,7 +213,7 @@ class mScreenState extends State<mScreen> with AutomaticKeepAliveClientMixin{
                    print(translation);
                   // results=translation as String;
                   //resu=resultList(firstWidget: Text(translation));
-                  data=DataModel(input,l1,translation,l2,emoti,0);
+                  data=DataModel(input,l1,translation,l2,emoti,0,useId);
                  // dd=data;
                   _save(context,data,input,l1,l2);
                   return 

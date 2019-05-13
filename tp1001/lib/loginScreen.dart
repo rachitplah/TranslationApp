@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:tp1001/mainScreen.dart';
 
-class LoginScreen1 extends StatelessWidget {
-
+class LoginScreen1 extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+    return LoginScreen1State();
+  }
+}
+class LoginScreen1State extends State<LoginScreen1>{
    Color primaryColor=Colors.lightBlueAccent;
    Color backgroundColor=Colors.white;
    AssetImage backgroundImage=AssetImage('assests/images/languages.jpg');
+   var aaa;
 /*
   LoginScreen1({
     Key key,
@@ -202,7 +209,10 @@ class LoginScreen1 extends StatelessWidget {
                               elevation: 10.0,
                               shape: RoundedRectangleBorder(
                                      borderRadius: BorderRadius.circular(30.0)),
-                              onPressed: ()=>{},
+                              onPressed: (){
+                                //aaa=function2();
+                                Navigator.of(context).pushReplacementNamed('/screen2');
+                              },
                            ),
                       // width: 50.0,
                        height: 50.0,

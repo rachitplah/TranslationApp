@@ -7,15 +7,35 @@ import 'package:tp1001/loginScreen.dart';
 
 /// The function that is called when main.dart is run.
 void main()=>runApp(tp101App());
-
+var useId=null;
 /// This widget is the root of our application.
-class tp101App extends StatelessWidget {
+class tp101App extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+    return tp101AppState();
+  }
+}
+class tp101AppState extends State<tp101App>{
+  var aa;
   @override
   Widget build(BuildContext context) {
+      loginCheck();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Abhivadin',
-      home: LoginScreen1(),
+      routes: <String,WidgetBuilder>
+      {
+        '/screen1':(BuildContext context)=>LoginScreen1(),
+        '/screen2':(BuildContext context)=>mScreen(),
+      },
+      home: aa,
     );
+  }
+  void loginCheck()
+  {
+     if(useId==null)
+     aa=LoginScreen1();
+     else
+     aa=mScreen();
   }
 }

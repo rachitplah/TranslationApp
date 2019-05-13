@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tp1001/mainScreen.dart';
+
 /*
 class LoginScreen1 extends StatefulWidget{
   @override
@@ -210,7 +212,7 @@ class LoginScreen1 extends StatelessWidget{
                               shape: RoundedRectangleBorder(
                                      borderRadius: BorderRadius.circular(30.0)),
                               onPressed: (){
-                                Navigator.of(context).pushReplacementNamed('/screen2');
+                                Navigator.of(context).pushReplacement( MaterialPageRoute(builder: (BuildContext context) => mScreen()));
                               },
                            ),
                       // width: 50.0,

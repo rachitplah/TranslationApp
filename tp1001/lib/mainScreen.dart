@@ -2,10 +2,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:tp1001/models/data.dart';
 import 'package:tp1001/utils/database_helper.dart';
+import 'package:tp1001/loginScreen.dart';
 import 'package:tp1001/api.dart';
 import 'package:translator/translator.dart';
 import 'package:sqflite/sqflite.dart';
 var l1,l2;
+String useId=null;
 var emoti,exists=0;
 String results="";
 var resu;
@@ -17,18 +19,29 @@ class mScreen extends StatefulWidget{
     return mScreenState();
   }
 }
-class mScreenState extends State<mScreen> with SingleTickerProviderStateMixin{
+class mScreenState extends State<mScreen> with AutomaticKeepAliveClientMixin{
   
  TextEditingController inputTController=TextEditingController();
   //var l1,l2;
   DataModel data;
   DatabaseHelper helper=DatabaseHelper();
-  TabController tabController;
-  var fabIcon = Icons.message;
+  Future<String> loginId()
+  async{
+    return
+     Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => LoginScreen1()));
+  }
+  void checkUseId()
+  {
+    if(useId==null)
+    useId=(loginId() as String);
+  }
+  @override
+  bool get wantKeepAlive=>true;
+  /*
   @override
   void initState(){
     super.initState();
-    tabController=TabController(vsync: this,length: 4)
+    tabController=TabController(vsync: this,length: 3)
     ..addListener((){
       setState((){
         switch (tabController.index){
@@ -46,11 +59,13 @@ class mScreenState extends State<mScreen> with SingleTickerProviderStateMixin{
         }
       });
     });
-  }
+  }*/
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return Scaffold(
+    checkUseId();
+    return DefaultTabController(
+      length: 3,
+    child: Scaffold(
       appBar: AppBar(
         title: Text("Abhivadin"),
         actions: <Widget>[
@@ -64,15 +79,12 @@ class mScreenState extends State<mScreen> with SingleTickerProviderStateMixin{
             Tab(child: Text('Translate'),),
             Tab(child: Text('Community'),),
             Tab(child: Text('Profile'),),
-            Tab(child: Text('Profile2'),),
           ],
-          controller: tabController,
           indicatorColor: Colors.white,
         ),
         ),
       body: 
       TabBarView(
-        controller: tabController,
         children:[
       Material(
         child: Container(
@@ -191,9 +203,9 @@ class mScreenState extends State<mScreen> with SingleTickerProviderStateMixin{
       ),
       resultList(),
       resultList(),
-      resultList(),
         ],
       ),
+    ),
     );
   }
   void micInp(BuildContext context)
@@ -251,10 +263,10 @@ class mScreenState extends State<mScreen> with SingleTickerProviderStateMixin{
     resu.updateListView2(i,iC,oC);
     exists=0;
   }
- // DataModel _returnDataModel()
- // {
-   // return this.data;
-  //}
+  DataModel _returnDataModel()
+  {
+    return this.data;
+  }
 }
 class swapButtonImage extends StatelessWidget
 {
@@ -527,10 +539,12 @@ class resultList extends StatefulWidget{
     rr.updateListView2(i,iC,oC);
   }
 }
-class resultListState extends State<resultList>{
+class resultListState extends State<resultList> with AutomaticKeepAliveClientMixin{
   DatabaseHelper databaseHelper = DatabaseHelper();
   List<DataModel> dataList;
   int count=0;
+  @override
+  bool get wantKeepAlive=>true;
   @override
   Widget build(BuildContext context) {
     if (dataList==null){
@@ -551,14 +565,14 @@ class resultListState extends State<resultList>{
                   leading: GestureDetector(
                        child:Icon(Icons.arrow_upward),
                       onTap:(){
-                        //_increaseRating(1);
+                        _increaseRating(1,this.dataList[position]);
                       }
                     ),
                   title: Text(this.dataList[position].output),
                   trailing: GestureDetector(
                       child:Icon(Icons.arrow_downward),
                       onTap:(){
-                        //_increaseRating(0);
+                        _increaseRating(0,this.dataList[position]);
                       }
                     ),
                   onTap: (){
@@ -582,15 +596,15 @@ class resultListState extends State<resultList>{
     final snackBar = SnackBar(content: Text(message),);
     Scaffold.of(context).showSnackBar(snackBar);
   }
-  
-  void _increaseRating(int i)
+  */
+  void _increaseRating(int i,DataModel data)
   { 
     if(i==1)
-      dd.rating=dd.rating+1;
+      data.rating=data.rating+1;
     else
-      dd.rating=dd.rating-1;
-      hh.updateData(dd);
-  }*/
+      data.rating=data.rating-1;
+      databaseHelper.updateData(data);
+  }
   void updateListView2(String i,String iC,String oC){
     final Future<Database> dbFuture= databaseHelper.initializeDatabase();
     dbFuture.then((database){

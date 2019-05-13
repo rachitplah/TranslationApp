@@ -9,13 +9,44 @@ var l1,l2;
 var emoti,exists=0;
 String results="";
 var resu;
-DataModel dd;
-DatabaseHelper hh;
-class mScreen extends StatelessWidget
-{ TextEditingController inputTController=TextEditingController();
+//DataModel dd;
+//DatabaseHelper hh;
+class mScreen extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+    return mScreenState();
+  }
+}
+class mScreenState extends State<mScreen> with SingleTickerProviderStateMixin{
+  
+ TextEditingController inputTController=TextEditingController();
   //var l1,l2;
   DataModel data;
   DatabaseHelper helper=DatabaseHelper();
+  TabController tabController;
+  var fabIcon = Icons.message;
+  @override
+  void initState(){
+    super.initState();
+    tabController=TabController(vsync: this,length: 4)
+    ..addListener((){
+      setState((){
+        switch (tabController.index){
+          case 0:
+          break;
+          case 1:
+          fabIcon=Icons.message;
+          break;
+          case 2:
+          fabIcon=Icons.camera_enhance;
+          break;
+          case 3:
+          fabIcon=Icons.call;
+          break;
+        }
+      });
+    });
+  }
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -33,11 +64,17 @@ class mScreen extends StatelessWidget
             Tab(child: Text('Translate'),),
             Tab(child: Text('Community'),),
             Tab(child: Text('Profile'),),
+            Tab(child: Text('Profile2'),),
           ],
+          controller: tabController,
           indicatorColor: Colors.white,
         ),
         ),
-      body: Material(
+      body: 
+      TabBarView(
+        controller: tabController,
+        children:[
+      Material(
         child: Container(
           padding: EdgeInsets.only(top:30.0),
           color: Colors.lightBlueAccent,
@@ -71,7 +108,7 @@ class mScreen extends StatelessWidget
                    print(userInput);
                    print(l1);
                      print(l2);
-                  hh=helper;
+                  //hh=helper;
                   results=await (convert1(userInput,l1,l2,context,data) as String);
                    print('This is $results');
 
@@ -152,6 +189,11 @@ class mScreen extends StatelessWidget
           ),
         ),
       ),
+      resultList(),
+      resultList(),
+      resultList(),
+        ],
+      ),
     );
   }
   void micInp(BuildContext context)
@@ -176,7 +218,7 @@ class mScreen extends StatelessWidget
                   // results=translation as String;
                   //resu=resultList(firstWidget: Text(translation));
                   data=DataModel(input,l1,translation,l2,emoti,0);
-                  dd=data;
+                 // dd=data;
                   _save(context,data,input,l1,l2);
                   return 
                   translation;
@@ -209,10 +251,10 @@ class mScreen extends StatelessWidget
     resu.updateListView2(i,iC,oC);
     exists=0;
   }
-  DataModel _returnDataModel()
-  {
-    return this.data;
-  }
+ // DataModel _returnDataModel()
+ // {
+   // return this.data;
+  //}
 }
 class swapButtonImage extends StatelessWidget
 {
@@ -509,14 +551,14 @@ class resultListState extends State<resultList>{
                   leading: GestureDetector(
                        child:Icon(Icons.arrow_upward),
                       onTap:(){
-                        _increaseRating(1);
+                        //_increaseRating(1);
                       }
                     ),
                   title: Text(this.dataList[position].output),
                   trailing: GestureDetector(
                       child:Icon(Icons.arrow_downward),
                       onTap:(){
-                        _increaseRating(0);
+                        //_increaseRating(0);
                       }
                     ),
                   onTap: (){
@@ -540,7 +582,7 @@ class resultListState extends State<resultList>{
     final snackBar = SnackBar(content: Text(message),);
     Scaffold.of(context).showSnackBar(snackBar);
   }
-  */
+  
   void _increaseRating(int i)
   { 
     if(i==1)
@@ -548,7 +590,7 @@ class resultListState extends State<resultList>{
     else
       dd.rating=dd.rating-1;
       hh.updateData(dd);
-  }
+  }*/
   void updateListView2(String i,String iC,String oC){
     final Future<Database> dbFuture= databaseHelper.initializeDatabase();
     dbFuture.then((database){

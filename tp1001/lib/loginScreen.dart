@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tp1001/mainScreen.dart';
-
+/*
 class LoginScreen1 extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
@@ -8,10 +7,11 @@ class LoginScreen1 extends StatefulWidget{
   }
 }
 class LoginScreen1State extends State<LoginScreen1>{
+  */
+class LoginScreen1 extends StatelessWidget{
    Color primaryColor=Colors.lightBlueAccent;
    Color backgroundColor=Colors.white;
    AssetImage backgroundImage=AssetImage('assests/images/languages.jpg');
-   var aaa;
 /*
   LoginScreen1({
     Key key,
@@ -210,7 +210,6 @@ class LoginScreen1State extends State<LoginScreen1>{
                               shape: RoundedRectangleBorder(
                                      borderRadius: BorderRadius.circular(30.0)),
                               onPressed: (){
-                                //aaa=function2();
                                 Navigator.of(context).pushReplacementNamed('/screen2');
                               },
                            ),

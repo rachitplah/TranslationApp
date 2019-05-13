@@ -9,6 +9,7 @@ import 'package:tp1001/loginScreen.dart';
 void main()=>runApp(tp101App());
 var useId=null;
 /// This widget is the root of our application.
+/*
 class tp101App extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
@@ -16,6 +17,8 @@ class tp101App extends StatefulWidget{
   }
 }
 class tp101AppState extends State<tp101App>{
+*/
+class tp101App extends StatelessWidget{
   var aa;
   @override
   Widget build(BuildContext context) {

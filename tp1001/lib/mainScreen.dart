@@ -20,7 +20,23 @@ class mScreen extends StatelessWidget
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      appBar: AppBar(title: Text("Abhivadin"),),
+      appBar: AppBar(
+        title: Text("Abhivadin"),
+        actions: <Widget>[
+          Padding(
+           padding: EdgeInsets.only(right: 10.0),
+           child: Icon(Icons.search),
+          ),
+        ],
+        bottom: TabBar(
+          tabs: <Widget>[
+            Tab(child: Text('Translate'),),
+            Tab(child: Text('Community'),),
+            Tab(child: Text('Profile'),),
+          ],
+          indicatorColor: Colors.white,
+        ),
+        ),
       body: Material(
         child: Container(
           padding: EdgeInsets.only(top:30.0),

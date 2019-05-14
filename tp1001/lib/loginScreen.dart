@@ -9,6 +9,7 @@ class LoginScreen1 extends StatefulWidget{
 class LoginScreen1State extends State<LoginScreen1>{
   
 //class LoginScreen1 extends StatelessWidget{
+   var _formKey=GlobalKey<LoginScreen1State>();
    Color primaryColor=Colors.lightBlueAccent;
    Color backgroundColor=Colors.white;
    AssetImage backgroundImage=AssetImage('assests/images/languages.jpg');
@@ -37,7 +38,9 @@ class LoginScreen1State extends State<LoginScreen1>{
         color: this.backgroundColor,
       ),
       child: 
-      Form(child:
+      Form(
+        key: _formKey,
+        child:
       ListView(
         //crossAxisAlignment: CrossAxisAlignment.start,
         //mainAxisSize: MainAxisSize.max,
@@ -147,12 +150,12 @@ class LoginScreen1State extends State<LoginScreen1>{
             TextFormField(
               style: TextStyle(color: Colors.grey),
               controller: emailTController,
-              //onSubmitted: (String userInput) {
-                   
-                  // resultListState().changeResult(res);
-                   
-              //},
-              //controller: inputTController,
+              validator: (String value){
+                if(value.isEmpty){
+                  return 'Please enter email address';
+                }
+              },
+              //onSubmitted: (String userInput) {},
               decoration: InputDecoration(
                 labelText: 'Enter email here',
                 labelStyle: TextStyle(color: Colors.grey),
@@ -193,6 +196,11 @@ class LoginScreen1State extends State<LoginScreen1>{
                    
               //},
               controller: passTController,
+              validator: (String value){
+                if(value.isEmpty){
+                  return 'Please enter password';
+                }
+              },
               obscureText: true,
               decoration: InputDecoration(
                 labelText: 'Enter password here',
@@ -224,7 +232,9 @@ class LoginScreen1State extends State<LoginScreen1>{
                               onPressed: (){
                                 //Navigator.of(context).pushReplacementNamed('/screen2');
                                 //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => mScreen()));
+                                if(_formKey.currentState.validate()){
                                 moveToLastScreen(context);
+                                }
                               },
                            ),
                       // width: 50.0,

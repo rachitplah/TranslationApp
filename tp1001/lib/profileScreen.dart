@@ -6,7 +6,7 @@ class profileScreen extends StatefulWidget{
   }
 }
 class profileScreenState extends State<profileScreen> with AutomaticKeepAliveClientMixin{
-  static var aa1;
+  static var aa1,aa2,aa3;
   var a1=Padding(
               padding: EdgeInsets.only(left:10.0,right:10.0,bottom: 10.0,top:30.0),
               child:
@@ -17,6 +17,40 @@ class profileScreenState extends State<profileScreen> with AutomaticKeepAliveCli
               },
               decoration: InputDecoration(
                 labelText: 'Username',
+                labelStyle: TextStyle(color: Colors.blue[400]),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.0)
+                ),
+              ),
+            ),
+            );
+  var a2=Padding(
+              padding: EdgeInsets.only(left:10.0,right:10.0,bottom: 10.0,top:30.0),
+              child:
+            TextField(
+              style: TextStyle(color: Colors.blue[400]),
+              onSubmitted: (String userInput) {
+                                aa2=userInput;
+              },
+              decoration: InputDecoration(
+                labelText: 'Living Area',
+                labelStyle: TextStyle(color: Colors.blue[400]),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.0)
+                ),
+              ),
+            ),
+            );
+  var a3=Padding(
+              padding: EdgeInsets.only(left:10.0,right:10.0,bottom: 10.0,top:30.0),
+              child:
+            TextField(
+              style: TextStyle(color: Colors.blue[400]),
+              onSubmitted: (String userInput) {
+                  aa3=userInput;
+              },
+              decoration: InputDecoration(
+                labelText: 'Language Profeciency',
                 labelStyle: TextStyle(color: Colors.blue[400]),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5.0)
@@ -47,38 +81,8 @@ class profileScreenState extends State<profileScreen> with AutomaticKeepAliveCli
               ),
             ),
              a1,
-            Padding(
-              padding: EdgeInsets.only(left:10.0,right:10.0,bottom: 10.0,top:30.0),
-              child:
-            TextField(
-              style: TextStyle(color: Colors.blue[400]),
-              onSubmitted: (String userInput) {
-              },
-              decoration: InputDecoration(
-                labelText: 'Living Area',
-                labelStyle: TextStyle(color: Colors.blue[400]),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(5.0)
-                ),
-              ),
-            ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left:10.0,right:10.0,bottom: 10.0,top:30.0),
-              child:
-            TextField(
-              style: TextStyle(color: Colors.blue[400]),
-              onSubmitted: (String userInput) {
-              },
-              decoration: InputDecoration(
-                labelText: 'Language Profeciency',
-                labelStyle: TextStyle(color: Colors.blue[400]),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(5.0)
-                ),
-              ),
-            ),
-            ),
+            a2,
+            a3,
             Padding(
                    padding: EdgeInsets.only(top:30,left:20,right:20),
                    child:

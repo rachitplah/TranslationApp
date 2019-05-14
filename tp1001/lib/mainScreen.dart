@@ -101,8 +101,8 @@ class mScreenState extends State<mScreen> with AutomaticKeepAliveClientMixin{
                    print(userInput);
                    print(l1);
                      print(l2);
-                  results=await (convert1(userInput,l1,l2,context,data) as String);
-                   print('This is $results');
+                  convert1(userInput,l1,l2,context,data);
+                   //print('This is $results');
 
                   // resultListState().changeResult(res);
                    
@@ -176,6 +176,36 @@ class mScreenState extends State<mScreen> with AutomaticKeepAliveClientMixin{
                     height: 200.0,
                     //width: 100.0,
                     ),
+                    Padding(
+                   padding: EdgeInsets.only(top:20,left:20,right:20),
+                   child:
+                   Container(
+                     child: RaisedButton(
+                               child: 
+                               Row(
+                                 children: <Widget>[
+                                    Text(
+                                         "Write a translation",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    Padding(
+                                      padding: EdgeInsets.only(left: 10.0,right: 10.0),
+                                    )
+                                    Icon(Icons.edit),
+                                 ],
+                               ),                              
+                              color: Colors.blue[400],
+                              padding: EdgeInsets.all(0),
+                              elevation: 10.0,
+                              shape: RoundedRectangleBorder(
+                                     borderRadius: BorderRadius.circular(5.0)),
+                              onPressed: (){
+                              },
+                           ),
+                      // width: 50.0,
+                       height: 50.0,
+                   ),
+                 ),
               ],
             ),
           ),

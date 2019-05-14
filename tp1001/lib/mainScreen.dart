@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tp1001/models/data.dart';
 import 'package:tp1001/utils/database_helper.dart';
 import 'package:tp1001/loginScreen.dart';
+import 'package:tp1001/editScreen.dart';
 import 'package:tp1001/api.dart';
 import 'package:translator/translator.dart';
 import 'package:sqflite/sqflite.dart';
@@ -35,6 +36,11 @@ class mScreenState extends State<mScreen> with AutomaticKeepAliveClientMixin{
      {await(loginId(context));
       setState(() {});
      }
+  }
+  void editS(BuildContext context) async{
+    await Navigator.push(context,MaterialPageRoute(builder: (context) {
+       return editScreen();
+     }));
   }
   @override
   bool get wantKeepAlive=>true;
@@ -173,7 +179,7 @@ class mScreenState extends State<mScreen> with AutomaticKeepAliveClientMixin{
                       margin: EdgeInsets.only(left: 10.0,top: 30.0,right: 10.0,bottom: 30.0),
                       child:
                     resu=resultList(),
-                    height: 200.0,
+                    height: 150.0,
                     //width: 100.0,
                     ),
                     Padding(
@@ -190,7 +196,7 @@ class mScreenState extends State<mScreen> with AutomaticKeepAliveClientMixin{
                                       ),
                                     Padding(
                                       padding: EdgeInsets.only(left: 10.0,right: 10.0),
-                                    )
+                                    ),
                                     Icon(Icons.edit),
                                  ],
                                ),                              
@@ -200,6 +206,7 @@ class mScreenState extends State<mScreen> with AutomaticKeepAliveClientMixin{
                               shape: RoundedRectangleBorder(
                                      borderRadius: BorderRadius.circular(5.0)),
                               onPressed: (){
+                                editS(context);
                               },
                            ),
                       // width: 50.0,
@@ -714,7 +721,7 @@ class resultListState2 extends State<resultList2> with AutomaticKeepAliveClientM
                   trailing: GestureDetector(
                       child:Icon(Icons.edit),
                       onTap:(){
-                        //_increaseRating(0,this.dataList[position]);
+                        editS(context);
                       }
                     ),
                   onTap: (){
@@ -725,20 +732,11 @@ class resultListState2 extends State<resultList2> with AutomaticKeepAliveClientM
           },
       );
   }
-  /*
-  void _delete(BuildContext context,DataModel data) async{
-    int result=await databaseHelper.deleteData(data.id);
-    if(result!=0){
-    _showSnackBar(context,'Note Deleted Successfully');
-    // TODO update list view.
-    //updateListView(1);
-    }
+  void editS(BuildContext context) async{
+    await Navigator.push(context,MaterialPageRoute(builder: (context) {
+       return editScreen();
+     }));
   }
-  void _showSnackBar(BuildContext context, String  message){
-    final snackBar = SnackBar(content: Text(message),);
-    Scaffold.of(context).showSnackBar(snackBar);
-  }
-  */
   void _increaseRating(int i,DataModel data)
   { 
     if(i==1)

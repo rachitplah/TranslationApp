@@ -4,6 +4,7 @@ import 'package:tp1001/models/data.dart';
 import 'package:tp1001/utils/database_helper.dart';
 import 'package:tp1001/loginScreen.dart';
 import 'package:tp1001/editScreen.dart';
+import 'package:tp1001/profileScreen.dart';
 import 'package:tp1001/api.dart';
 import 'package:translator/translator.dart';
 import 'package:sqflite/sqflite.dart';
@@ -219,7 +220,7 @@ class mScreenState extends State<mScreen> with AutomaticKeepAliveClientMixin{
         ),
       ),
       resu2=resultList2(),
-      resultList(),
+      profileScreen(),
         ],
       ),
     ),

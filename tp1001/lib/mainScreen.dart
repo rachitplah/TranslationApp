@@ -657,15 +657,27 @@ class resultListState2 extends State<resultList2> with AutomaticKeepAliveClientM
                       }
                     ),
                   title: 
-                  Column(
+                  Row(
                       children: <Widget>[
-                            Text(this.dataList[position].input),
-                            Text(this.dataList[position].output),
+                            Expanded(
+                               child: Text(this.dataList[position].input),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 5.0,right: 5.0,top: 10.0,bottom: 10.0),
+                              child: Icon(Icons.arrow_right,
+                                     size:35.0,),
+                            ),
+                            Expanded(
+                              child:    Text(this.dataList[position].output),
+                            )
                       ],
                   ),
-                  subtitle: Column(
+                  subtitle: Row(
                       children: <Widget>[
                             Text(this.dataList[position].iCode+'->'+this.dataList[position].oCode),
+                            Padding(
+                              padding: EdgeInsets.only(left: 15.0,right: 15.0,top: 10.0),
+                            ),
                             Text(this.dataList[position].emotion),
                       ],
                   ),

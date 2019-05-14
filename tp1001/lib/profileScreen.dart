@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 class profileScreen extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
-    return null;
+    return profileScreenState();
   }
 }
 class profileScreenState extends State<profileScreen> with AutomaticKeepAliveClientMixin{

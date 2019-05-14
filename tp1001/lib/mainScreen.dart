@@ -687,7 +687,7 @@ class resultListState2 extends State<resultList2> with AutomaticKeepAliveClientM
   Widget build(BuildContext context) {
     if (dataList==null){
       dataList=List<DataModel>();
-     // updateListView(1);
+      updateListView();
     }
     return getListView();
   }

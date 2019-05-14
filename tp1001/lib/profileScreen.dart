@@ -125,7 +125,7 @@ class profileScreenState extends State<profileScreen> with AutomaticKeepAliveCli
                              textAlign: TextAlign.center,
                         ),
                            ),);
-                           a2=a1= 
+                           a2= 
                                 Padding(
                                   padding: EdgeInsets.only(left:10.0,right:10.0,bottom: 10.0,top:30.0),
                                   child:

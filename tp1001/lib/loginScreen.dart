@@ -232,9 +232,9 @@ class LoginScreen1State extends State<LoginScreen1>{
                               onPressed: (){
                                 //Navigator.of(context).pushReplacementNamed('/screen2');
                                 //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => mScreen()));
-                                if(_formKey.currentState.validate()){
+                               // if(_formKey.currentState) {
                                 moveToLastScreen(context);
-                                }
+                                //}                                
                               },
                            ),
                       // width: 50.0,

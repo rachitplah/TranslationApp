@@ -17,13 +17,13 @@ class editScreen extends StatelessWidget{
               padding: EdgeInsets.only(left:10.0,right:10.0,bottom: 10.0,top:30.0),
               child:
             TextField(
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.blue[400]),
               onSubmitted: (String userInput) {
                          moveToLastScreen(context);
               },
               decoration: InputDecoration(
                 labelText: 'Enter translation here',
-                labelStyle: TextStyle(color: Colors.white),
+                labelStyle: TextStyle(color: Colors.blue[400]),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5.0)
                 ),

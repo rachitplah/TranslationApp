@@ -54,11 +54,15 @@ class mScreenState extends State<mScreen> with AutomaticKeepAliveClientMixin{
       length: 3,
     child: Scaffold(
       appBar: AppBar(
-        title: Text("Abhivadin"),
+        title: Text("abhivadin"),
         actions: <Widget>[
           Padding(
-           padding: EdgeInsets.only(right: 10.0),
-           child: Icon(Icons.translate),
+           padding: EdgeInsets.only(right: 10.0,top: 10.0),
+           child: //Icon(Icons.translate),
+           Text(
+                    "𑀅𑀪𑀺𑀯𑀸𑀤𑀺𑀦𑁆",
+                    style: TextStyle(
+                        fontSize: 30.0,),),
           ),
         ],
         bottom: TabBar(
@@ -177,33 +181,41 @@ class mScreenState extends State<mScreen> with AutomaticKeepAliveClientMixin{
                     //resu=resultList(firstWidget: Text("Hello")),
                       
                     Container(
-                      margin: EdgeInsets.only(left: 10.0,top: 30.0,right: 10.0,bottom: 30.0),
+                      margin: EdgeInsets.only(left: 10.0,top: 30.0,right: 10.0,bottom: 10.0),
                       child:
                     resu=resultList(),
                     height: 150.0,
                     //width: 100.0,
                     ),
                     Padding(
-                   padding: EdgeInsets.only(top:20,left:20,right:20),
+                   padding: EdgeInsets.only(left:20,right:20),
                    child:
                    Container(
                      child: RaisedButton(
                                child: 
+                               Padding(
+                                 padding: EdgeInsets.only(left: 70.0,right: 10.0),
+                                 child:
                                Row(
                                  children: <Widget>[
                                     Text(
                                          "Write a translation",
-                                        style: TextStyle(color: Colors.white),
+                                        style: TextStyle(color: Colors.white,
+                                               fontSize: 20.0,
+                                        ),
                                       ),
                                     Padding(
                                       padding: EdgeInsets.only(left: 10.0,right: 10.0),
                                     ),
-                                    Icon(Icons.edit),
+                                    Icon(Icons.edit,
+                                        color: Colors.white,
+                                    ),
                                  ],
-                               ),                              
+                               ),   
+                               ),                           
                               color: Colors.blue[400],
                               padding: EdgeInsets.all(0),
-                              elevation: 10.0,
+                              elevation: 5.0,
                               shape: RoundedRectangleBorder(
                                      borderRadius: BorderRadius.circular(5.0)),
                               onPressed: (){

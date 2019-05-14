@@ -6,6 +6,24 @@ class profileScreen extends StatefulWidget{
   }
 }
 class profileScreenState extends State<profileScreen> with AutomaticKeepAliveClientMixin{
+  static var aa1;
+  var a1=Padding(
+              padding: EdgeInsets.only(left:10.0,right:10.0,bottom: 10.0,top:30.0),
+              child:
+            TextField(
+              style: TextStyle(color: Colors.blue[400]),
+              onSubmitted: (String userInput) {
+                aa1=userInput;
+              },
+              decoration: InputDecoration(
+                labelText: 'Username',
+                labelStyle: TextStyle(color: Colors.blue[400]),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.0)
+                ),
+              ),
+            ),
+            );
   @override
   bool get wantKeepAlive=>true;
   @override
@@ -28,22 +46,7 @@ class profileScreenState extends State<profileScreen> with AutomaticKeepAliveCli
                 ),
               ),
             ),
-             Padding(
-              padding: EdgeInsets.only(left:10.0,right:10.0,bottom: 10.0,top:30.0),
-              child:
-            TextField(
-              style: TextStyle(color: Colors.blue[400]),
-              onSubmitted: (String userInput) {
-              },
-              decoration: InputDecoration(
-                labelText: 'Username',
-                labelStyle: TextStyle(color: Colors.blue[400]),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(5.0)
-                ),
-              ),
-            ),
-            ),
+             a1,
             Padding(
               padding: EdgeInsets.only(left:10.0,right:10.0,bottom: 10.0,top:30.0),
               child:

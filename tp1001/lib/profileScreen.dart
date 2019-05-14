@@ -99,8 +99,90 @@ class profileScreenState extends State<profileScreen> with AutomaticKeepAliveCli
                               shape: RoundedRectangleBorder(
                                      borderRadius: BorderRadius.circular(5.0)),
                               onPressed: (){
-                               // editS(context);
-                               _showSnackBar(context, 'SAVED CHANGES');
+                                /*
+                              setState(() {
+                                a1=
+                               Paddind(
+                                 padding:EdgeInsets.only(left:10.0,right:10.0,bottom: 10.0,top:30.0),
+                                 child:
+                                Container(                             
+                             decoration: BoxDecoration(
+                         borderRadius: BorderRadius.circular(5.0),
+                         color: Colors.lightBlueAccent,
+                         border: Border.all(
+                                color: Colors.blue[400],
+                                width: 2.0,
+                                style: BorderStyle.solid,
+                         ),
+                         
+                       ),
+                       
+                       width: 266.0,
+                       height: 30.0,
+                             child:
+                             
+                           Text(aa1,
+                             style: TextStyle(color: Colors.white,fontSize: 19.0,),
+                             textAlign: TextAlign.center,
+                        ),
+                        ),
+                           );
+                           a2=
+                               Paddind(
+                                 padding:EdgeInsets.only(left:10.0,right:10.0,bottom: 10.0,top:30.0),
+                                 child:
+                                Container(                             
+                             decoration: BoxDecoration(
+                         borderRadius: BorderRadius.circular(5.0),
+                         color: Colors.lightBlueAccent,
+                         border: Border.all(
+                                color: Colors.blue[400],
+                                width: 2.0,
+                                style: BorderStyle.solid,
+                         ),
+                         
+                       ),
+                       
+                       width: 266.0,
+                       height: 30.0,
+                             child:
+                             
+                           Text(aa2,
+                             style: TextStyle(color: Colors.white,fontSize: 19.0,),
+                             textAlign: TextAlign.center,
+                        ),
+                        ),
+                           );
+                           a3=
+                               Paddind(
+                                 padding:EdgeInsets.only(left:10.0,right:10.0,bottom: 10.0,top:30.0),
+                                 child:
+                                Container(                             
+                             decoration: BoxDecoration(
+                         borderRadius: BorderRadius.circular(5.0),
+                         color: Colors.lightBlueAccent,
+                         border: Border.all(
+                                color: Colors.blue[400],
+                                width: 2.0,
+                                style: BorderStyle.solid,
+                         ),
+                         
+                       ),
+                       
+                       width: 266.0,
+                       height: 30.0,
+                             child:
+                             
+                           Text(aa3,
+                             style: TextStyle(color: Colors.white,fontSize: 19.0,),
+                             textAlign: TextAlign.center,
+                        ),
+                        ),
+                           );
+                              
+                              });*/
+                               
+                               _showSnackBar(context, 'CHANGES SAVED');
                               },
                            ),
                       // width: 50.0,

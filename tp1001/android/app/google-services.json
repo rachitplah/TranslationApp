@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "668941613646",
+    "firebase_url": "https://abhivadin-1556349091214.firebaseio.com",
+    "project_id": "abhivadin-1556349091214",
+    "storage_bucket": "abhivadin-1556349091214.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:668941613646:android:2dc85692ab0f4703",
+        "android_client_info": {
+          "package_name": "com.example.tp1001"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "668941613646-7haafainabmp6rm5j5ga75054iarp82r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBmJMX0ncVN9ig8h2iCdPWB8AM1chmHPk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "668941613646-7haafainabmp6rm5j5ga75054iarp82r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

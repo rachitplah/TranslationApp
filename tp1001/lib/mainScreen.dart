@@ -8,6 +8,7 @@ import 'package:tp1001/profileScreen.dart';
 import 'package:tp1001/api.dart';
 import 'package:translator/translator.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:firebase_database/firebase_database.dart';
 var l1,l2;
 var emoti,exists=0;
 String results="";

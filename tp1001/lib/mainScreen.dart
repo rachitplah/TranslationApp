@@ -113,7 +113,6 @@ class mScreenState extends State<mScreen> with AutomaticKeepAliveClientMixin{
                    print(userInput);
                    print(l1);
                      print(l2);
-                     FirebaseDemoScreen().createRecord();
                   convert1(userInput,l1,l2,context,data);
                    //print('This is $results');
 
@@ -268,6 +267,7 @@ class mScreenState extends State<mScreen> with AutomaticKeepAliveClientMixin{
                  // dd=data;
                  int result;
                   result=await helper.insertData(data);
+                 await FirebaseDemoScreen().createRecord(data.id,input,l1,translation,l2,emoti,0,useId);
                  if(result!=0)
                   print('Translation saved successfully');
                   //_save(context,data,input,l1,l2);

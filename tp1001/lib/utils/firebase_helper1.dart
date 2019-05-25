@@ -48,14 +48,16 @@ class FirebaseDemoScreen extends StatelessWidget {
     );
   }
   */
-  void createRecord(){
-    databaseReference.child("1").set({
-      'title': 'Mastering EJB',
-      'description': 'Programming Guide for J2EE'
-    });
-    databaseReference.child("2").set({
-      'title': 'Flutter in Action',
-      'description': 'Complete Programming Guide to learn Flutter'
+  void createRecord(var id, var input,var iCode, var output, var oCode, var emotion, var rating,var userId){
+    databaseReference.child(id).set({
+      'id': id,
+      'iCode': iCode,
+      'oCode':oCode,
+      'input': input,
+      'output': output,
+      'emotion': emotion,
+      'rating': rating,
+      'userId': userId
     });
   }
   void getData(){

@@ -11,6 +11,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:tp1001/utils/firebase_helper1.dart';
 var l1,l2;
 var emoti,exists=0;
+var count=0;
 String results="";
 var resu,resu2;
 class mScreen extends StatefulWidget{
@@ -253,6 +254,7 @@ class mScreenState extends State<mScreen> with AutomaticKeepAliveClientMixin{
   Future<String> convert1(String input,String l1, String l2,BuildContext context,DataModel data) async{
                    resu2.updateListView();
                    await resu.updateListView2(input,l1,l2);
+                   //exists=0;
                    if(exists==0)
                      {
                    GoogleTranslator translator =GoogleTranslator();
@@ -267,11 +269,15 @@ class mScreenState extends State<mScreen> with AutomaticKeepAliveClientMixin{
                  // dd=data;
                  int result;
                   result=await helper.insertData(data);
-                 await FirebaseDemoScreen().createRecord(data.id,input,l1,translation,l2,emoti,0,useId);
+                  String ss=count.toString();
+                 await FirebaseDemoScreen().createRecord(ss,input,l1,translation,l2,emoti,0,useId);
+                 //await resu.updateLV(input,l1, l2, emoti);
+                 count++;
                  if(result!=0)
                   print('Translation saved successfully');
                   //_save(context,data,input,l1,l2);
                   await resu.updateListView2(input,l1,l2);
+                  //await resu.updateLV2(translation);
                   return 
                   translation;
                      }
@@ -566,6 +572,19 @@ class resultList extends StatefulWidget{
     if(rr!=null)
     rr.updateListView();
   }
+  void updateLV(var input,var iCode, var oCode, var emotion)
+  {
+    if(rr!=null)
+    rr.updateLV(input, iCode, oCode, emotion);
+  }
+  void updateLV2(String dt)
+  {
+    if(rr!=null)
+    {
+    print("uplv2");
+    rr.updateLV2(dt);
+    }
+  }
 }
 class resultListState extends State<resultList> with AutomaticKeepAliveClientMixin{
   DatabaseHelper databaseHelper = DatabaseHelper();
@@ -632,6 +651,32 @@ class resultListState extends State<resultList> with AutomaticKeepAliveClientMix
     else
       data.rating=data.rating-1;
       databaseHelper.updateData(data);
+  }
+  void updateLV(var input,var iCode, var oCode, var emotion)
+  {
+    //Future<List<DataModel>> dataListFuture =FirebaseDemoScreen().getData(input,iCode, oCode, emotion);
+    DataModel dL = FirebaseDemoScreen().getData(input,iCode, oCode, emotion);
+        //dataListFuture.then((dataList){
+            setState(() {
+              this.dataList[0]=dL;
+              this.count=this.dataList.length;
+            });
+       // });
+  }
+  void updateLV2(String dt)
+  {
+    //Future<List<DataModel>> dataListFuture =FirebaseDemoScreen().getData(input,iCode, oCode, emotion);
+   // DataModel dL = FirebaseDemoScreen().getData(input,iCode, oCode, emotion);
+        //dataListFuture.then((dataList){
+           print("work");
+           print("dt: $dt");
+           /*
+            setState(() {
+              this.dataList[0].output=dt;
+              this.dataList[0].rating=0;
+              this.count=1;
+            });*/
+       // });
   }
   void updateListView2(String i,String iC,String oC){
     final Future<Database> dbFuture= databaseHelper.initializeDatabase();

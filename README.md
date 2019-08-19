@@ -12,19 +12,28 @@ Language is best defined by the people who speak them. Hence, an active communit
 
 ### Login screen:
 #### This is the login screen:
-![Login Screen](/sample/login_screen.JPG)
+<p align="center">
+  <img src="/sample/login_screen.jpg" height="500" alt="Login Screen">
+</p>
+
 * The login screen is designed considering an interactive and modern design UI.
 * It consists of two TextFormField functions are arranged in a ListView with one RaisedButton and one FlatButton at the     bottom.
-* Its main purpose is to connect the user to the community with his login credentials and allow him to use the app.
+* Its purpose is to connect the user to the community with his login credentials and allow him to use the app.
 
 ### Profile screen: 
 #### This is the profile screen where you can update your profile:
-![Profile Screen](/sample/profile_screen.JPG)
+<p align="center">
+  <img src="/sample/profile_screen.jpg" height="500" alt="Profile Screen">
+</p>
+
 * The main purpose of this screen is to gather further information about the user so that he is able to perform communal contributions.
 * It consists of an icon with three TextFormFields and a RaisedButton arranged in a ListView.
 ### Main Screen:
 #### This is the main screen and translation page:
-![Main Screen](/sample/main_screen.JPG)
+<p align="center">
+  <img src="/sample/main_screen.jpg" height="500" alt="Main Screen">
+</p>
+
 * It consists of several parts(vertically addressed):
 * An AppBar on top to display app name.
 * Below AppBar is TabBar to display tabs and switch between them.
@@ -33,11 +42,18 @@ Language is best defined by the people who speak them. Hence, an active communit
 * One mic input button and emoticon input DropDown menu follows.
 * At the bottom there’s a button to give alternate translation.
 * It’s responsible for taking all the inputs performing translations and displaying results as well as giving the user an option to suggest his own version of the translation.
-![Main Screen2](/sample/main_screen2.JPG)
+
+<p align="center">
+  <img src="/sample/main_screen2.jpg" height="500" alt="Main Screen2">
+</p>
+
 * Main screen itself displays result in the result area when input is given.
 ### Community Screen:
 #### This is the community screen:
-![Community Screen](/sample/community_screen.JPG)
+<p align="center">
+  <img src="/sample/community_screen.jpg" height="500" alt="Community Screen">
+</p>
+
 * This community screen enables a user to contribute to the community and validate the translations he seems fit by upvoting or suggesting his own version for it.
 * It mainly consists of ListView with list items being the ones that a user has proficiency in.
 

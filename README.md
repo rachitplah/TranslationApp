@@ -2,7 +2,7 @@
 
 A translation portal that helps effectively translate from one language to other.
 
-This project aims at developing a language translation portal that helps effectively translate from one language to other with manner of speech and local region in consideration. The normal translations are fetched via APIs further appropriate localized translations with manner of speech in consideration are validated and upvoted via community. Technologies to be used Flutter, AWS APIs, Empath API etc.  
+This project aims at developing a language translation portal that helps effectively translate from one language to other with manner of speech and local region in consideration. The normal translations are fetched via APIs further appropriate localized translations with manner of speech in consideration are validated and upvoted via community. It is a flutter based project.
 
 ### Background of this project:
 
@@ -26,7 +26,7 @@ Language is best defined by the people who speak them. Hence, an active communit
   <img src="/sample/profile_screen.jpg" height="500" alt="Profile Screen">
 </p>
 
-* The main purpose of this screen is to gather further information about the user so that he is able to perform communal contributions.
+* This screen is to gathers further information about the user so that he is able to perform communal contributions.
 * It consists of an icon with three TextFormFields and a RaisedButton arranged in a ListView.
 ### Main Screen:
 #### This is the main screen and translation page:

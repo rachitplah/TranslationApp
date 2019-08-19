@@ -13,7 +13,7 @@ Language is best defined by the people who speak them. Hence, an active communit
 ### Login screen:
 #### This is the login screen:
 <p align="center">
-  <img src="/sample/login_screen.jpg" height="500" alt="Login Screen">
+  <img src="https://github.com/rachitplah/TranslationApp/blob/master/sample/login_screen.jpg" height="500" alt="Login Screen">
 </p>
 
 * The login screen is designed considering an interactive and modern design UI.
@@ -23,7 +23,7 @@ Language is best defined by the people who speak them. Hence, an active communit
 ### Profile screen: 
 #### This is the profile screen where you can update your profile:
 <p align="center">
-  <img src="/sample/profile_screen.jpg" height="500" alt="Profile Screen">
+  <img src="https://github.com/rachitplah/TranslationApp/blob/master/sample/profile_screen.jpg" height="500" alt="Profile Screen">
 </p>
 
 * This screen is to gathers further information about the user so that he is able to perform communal contributions.
@@ -31,7 +31,7 @@ Language is best defined by the people who speak them. Hence, an active communit
 ### Main Screen:
 #### This is the main screen and translation page:
 <p align="center">
-  <img src="/sample/main_screen.jpg" height="500" alt="Main Screen">
+  <img src="https://github.com/rachitplah/TranslationApp/blob/master/sample/main_screen.jpg" height="500" alt="Main Screen">
 </p>
 
 * It consists of several parts(vertically addressed):
@@ -44,14 +44,14 @@ Language is best defined by the people who speak them. Hence, an active communit
 * It’s responsible for taking all the inputs performing translations and displaying results as well as giving the user an option to suggest his own version of the translation.
 
 <p align="center">
-  <img src="/sample/main_screen2.jpg" height="500" alt="Main Screen2">
+  <img src="https://github.com/rachitplah/TranslationApp/blob/master/sample/main_screen2.jpg" height="500" alt="Main Screen2">
 </p>
 
 * Main screen itself displays result in the result area when input is given.
 ### Community Screen:
 #### This is the community screen:
 <p align="center">
-  <img src="/sample/community_screen.jpg" height="500" alt="Community Screen">
+  <img src="https://github.com/rachitplah/TranslationApp/blob/master/sample/community_screen.jpg" height="500" alt="Community Screen">
 </p>
 
 * This community screen enables a user to contribute to the community and validate the translations he seems fit by upvoting or suggesting his own version for it.
